@@ -1,7 +1,6 @@
-const { createElement: c, useEffect, useState } = React;
+import QuizzIdPrompt from './QuizzIdPrompt.js';
 
-// TODO: impl
-const QuizzIdPrompt = null;
+const { createElement: c, useEffect, useState } = React;
 
 function getQuizzHash() {
   // Ignore the hash sign
