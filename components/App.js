@@ -1,26 +1,25 @@
-import QuizzIdPrompt from './QuizzIdPrompt.js';
+import QuizzCodePrompt from './QuizzCodePrompt.js';
 
 const { createElement: c, useEffect, useState } = React;
 
-function getQuizzHash() {
+function getQuizzCodeFromHash() {
   // Ignore the hash sign
-  const quizzId = location.hash.slice(1);
+  const quizzCode = location.hash.slice(1);
   // All quizzIds must be at least one char long
-  if (quizzId.length < 1) {
+  if (quizzCode.length < 1) {
     return null;
   } else {
-    return quizzId;
+    return quizzCode;
   }
 }
 
 function App() {
-  const [quizzId, setQuizzId] =
-    useState(getQuizzHash);
-  console.log(quizzId)
+  const [quizzCode, setQuizzCode] =
+    useState(getQuizzCodeFromHash);
 
   useEffect(() => {
     const handler = () =>
-      setQuizzId(getQuizzHash());
+      setQuizzCode(getQuizzCodeFromHash());
 
     window.addEventListener('hashchange', handler);
     return () =>
@@ -28,9 +27,9 @@ function App() {
   });
 
   return c('div', { className: 'App' },
-    quizzId
-    ? quizzId
-    : c(QuizzIdPrompt, { onDone: setQuizzId }),
+    quizzCode
+    ? quizzCode
+    : c(QuizzCodePrompt),
   );
 }
 
