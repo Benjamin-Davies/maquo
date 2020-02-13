@@ -10,6 +10,8 @@ services:
       MYSQL_DATABASE: benjamindavies_maquo
       MYSQL_USER: benjamindavies
       MYSQL_PASSWORD: secret
+    volumes:
+      - ./dev-db/:/var/lib/mysql/
     ports:
       - "3306:3306"
   web:
