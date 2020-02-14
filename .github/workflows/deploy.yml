@@ -1,0 +1,13 @@
+name: Deploy to server
+
+on: [push]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: sudo apt-get install sshpass
+    - run: ./deploy.sh
