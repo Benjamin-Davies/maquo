@@ -7,7 +7,7 @@ SFTP_ARGS="-P 2222 benjamindavies@php.mmc.school.nz"
 if command -v sshpass >/dev/null \
   && [ -n "$SSHPASS" ]
 then
-  sshpass -e sftp $SFTP_ARGS
+  sshpass -v -e sftp $SFTP_ARGS
 else
   sftp $SFTP_ARGS
 fi <<EOF
