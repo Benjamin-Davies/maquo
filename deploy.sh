@@ -2,7 +2,7 @@
 
 echo 'Connecting to the server'
 
-SFTP_ARGS="-P 8022 benjamindavies@php.mmc.school.nz"
+SFTP_ARGS="-P 2222 benjamindavies@php.mmc.school.nz"
 
 if command -v sshpass >/dev/null \
   && [ -n "$SSHPASS" ]
