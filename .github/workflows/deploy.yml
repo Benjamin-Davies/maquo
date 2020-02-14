@@ -1,6 +1,7 @@
 name: Deploy to server
 
-on: [push]
+#on: [push]
+on: []
 
 jobs:
   deploy:
