@@ -27,9 +27,11 @@ function App() {
   });
 
   return c('div', { className: 'App' },
-    quizzCode
-    ? quizzCode
-    : c(QuizzCodePrompt),
+    c('main', {className: 'App__main-content'},
+      quizzCode
+      ? quizzCode
+      : c(QuizzCodePrompt),
+    ),
   );
 }
 

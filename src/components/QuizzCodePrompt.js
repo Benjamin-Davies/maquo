@@ -12,16 +12,18 @@ function QuizzCodePrompt() {
     className: 'QuizzCodePrompt',
     onSubmit,
   },
-    c('h1', null, 'Enter your quizz code'),
+    c('h1', { className: 'QuizzCodePrompt__title' },
+      'Enter your quizz code',
+    ),
     c('input', {
       placeholder: 'Quizz Code...',
       ref: quizzCodeRef,
       autoFocus: true,
       required: true,
     }),
-    c('button', {
-      type: 'submit',
-    }, 'Next'),
+    c('button', { type: 'submit', },
+      'Next',
+    ),
   );
 }
 
