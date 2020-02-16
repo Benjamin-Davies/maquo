@@ -3,9 +3,9 @@
   --background: #cceeff;
   --primary: #0077dd;
   --secondary: #ffff33;
-  --dark-text: #000000;
-  --medium-text: #333333;
-  --light-text: #777777;
+  --dark-text: #333333;
+  --medium-text: #555555;
+  --light-text: #dddddd;
 }
 
 /* General */
@@ -22,15 +22,17 @@ button {
   border: 2px solid var(--medium-text);
   border-radius: 1em;
   box-shadow: 0 3px 5px 2px var(--light-text);
+  color: var(--dark-text);
   font: inherit;
   margin: 0 0.3em;
   padding: 0.1em 0.4em;
-  transition: box-shadow 100ms;
+  transition: box-shadow 100ms, color 100ms;
 }
 
 input:focus,
 button:focus {
   box-shadow: 0 0 0 5px var(--primary);
+  color: var(--dark-text);
   outline: none;
 }
 
@@ -44,15 +46,55 @@ button {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-size: 2em;
+  font-size: 6vh;
   text-align: center;
 }
 
 .App__main-content {
   flex-grow: 1;
   margin: 1em auto;
-  max-width: 1024px;
+  max-width: 720px;
   width: 80%;
+}
+
+/* Nav Component */
+.Nav {
+  background: var(--primary);
+  font-size: 0.9em;
+}
+
+.Nav__inner {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 0;
+  width: 80%;
+}
+
+.Nav__logo,
+.Nav__link {
+  color: var(--light-text);
+  margin: 0 0.5em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 100ms;
+}
+
+.Nav__logo:focus,
+.Nav__link:focus {
+  color: white;
+  outline: none;
+  text-decoration-color: var(--secondary);
+}
+
+.Nav__logo {
+  color: white;
+  font-weight: bold;
+}
+
+.Nav__spacer {
+  flex-grow: 1;
 }
 
 /* QuizzCodePrompt Component */
@@ -63,6 +105,7 @@ button {
 }
 
 .QuizzCodePrompt__title {
+  color: var(--dark-text);
   flex-grow: 1;
 }
 
