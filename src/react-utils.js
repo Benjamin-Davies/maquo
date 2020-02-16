@@ -1,13 +1,15 @@
 const { useState, useEffect } = React;
 
 export function useLocationHash() {
-    const [hash, setHash] = useState(() => location.hash);
+  const [hash, setHash] = useState(location.hash);
+  useEvent(window, 'hashchange',
+    () => setHash(location.hash));
+  return hash;
+}
 
-    useEffect(() => {
-        const listener = () => setHash(location.hash);
-        window.addEventListener('hashchange', listener);
-        return () => window.removeEventListener('hashchange', listener);
-    });
-
-    return hash;
+export function useEvent(elem, event, listener, deps) {
+  useEffect(() => {
+    elem.addEventListener(event, listener);
+    return () => elem.removeEventListener(event, listener);
+  }, deps);
 }
