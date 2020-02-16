@@ -1,30 +1,10 @@
 import QuizzCodePrompt from './QuizzCodePrompt.js';
+import { useLocationHash } from '../react-utils.js';
 
-const { createElement: c, useEffect, useState } = React;
-
-function getQuizzCodeFromHash() {
-  // Ignore the hash sign
-  const quizzCode = location.hash.slice(1);
-  // All quizzIds must be at least one char long
-  if (quizzCode.length < 1) {
-    return null;
-  } else {
-    return quizzCode;
-  }
-}
+const { createElement: c } = React;
 
 function App() {
-  const [quizzCode, setQuizzCode] =
-    useState(getQuizzCodeFromHash);
-
-  useEffect(() => {
-    const handler = () =>
-      setQuizzCode(getQuizzCodeFromHash());
-
-    window.addEventListener('hashchange', handler);
-    return () =>
-      window.removeEventListener('hashchange', handler);
-  });
+  const quizzCode = useLocationHash().slice(1);
 
   return c('div', { className: 'App' },
     c('main', {className: 'App__main-content'},
