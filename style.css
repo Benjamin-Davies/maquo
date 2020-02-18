@@ -63,6 +63,10 @@ button {
   font-size: 0.9em;
 }
 
+.Nav--large {
+  font-size: 1.5em;
+}
+
 .Nav__inner {
   display: flex;
   flex-direction: row;
@@ -97,19 +101,19 @@ button {
   flex-grow: 1;
 }
 
-/* QuizzCodePrompt Component */
-.QuizzCodePrompt {
+/* QuizCodePrompt Component */
+.QuizCodePrompt {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.QuizzCodePrompt__title {
+.QuizCodePrompt__title {
   color: var(--dark-text);
   flex-grow: 1;
 }
 
-.QuizzCodePrompt > input,
-.QuizzCodePrompt > button {
+.QuizCodePrompt > input,
+.QuizCodePrompt > button {
   margin: 0.5em;
 }

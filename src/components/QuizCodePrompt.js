@@ -1,23 +1,23 @@
 const { createElement: c, useCallback, useRef } = React;
 
-function QuizzCodePrompt() {
-  const quizzCodeRef = useRef();
+function QuizCodePrompt() {
+  const quizCodeRef = useRef();
   const onSubmit = useCallback(ev => {
     ev.preventDefault();
     location.hash
-      = `#${quizzCodeRef.current.value}`;
+      = `#${quizCodeRef.current.value}`;
   });
 
   return c('form', {
-    className: 'QuizzCodePrompt',
+    className: 'QuizCodePrompt',
     onSubmit,
   },
-    c('h1', { className: 'QuizzCodePrompt__title' },
-      'Enter your quizz code',
+    c('h1', { className: 'QuizCodePrompt__title' },
+      'Enter your quiz code',
     ),
     c('input', {
-      placeholder: 'Quizz Code...',
-      ref: quizzCodeRef,
+      placeholder: 'Quiz Code...',
+      ref: quizCodeRef,
       autoFocus: true,
       required: true,
     }),
@@ -27,4 +27,4 @@ function QuizzCodePrompt() {
   );
 }
 
-export default QuizzCodePrompt;
+export default QuizCodePrompt;
