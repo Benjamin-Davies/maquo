@@ -1,11 +1,14 @@
 /* Colors */
 :root {
   --background: #cceeff;
+  --secondary-background: #aaddff;
   --primary: #0077dd;
-  --secondary: #ffff33;
+  --secondary: #ffff77;
+  --shadow: #33333333;
   --dark-text: #333333;
   --medium-text: #555555;
   --light-text: #dddddd;
+  --lightest-text: #ffffff;
 }
 
 /* General */
@@ -17,28 +20,62 @@ body {
   height: 100vh;
 }
 
+/* Inputs and Buttons */
 input,
-button {
+button,
+.button {
   border: 2px solid var(--medium-text);
   border-radius: 1em;
-  box-shadow: 0 3px 5px 2px var(--light-text);
+  box-shadow: 0 3px 5px 2px var(--shadow);
   color: var(--dark-text);
   font: inherit;
-  margin: 0 0.3em;
-  padding: 0.1em 0.4em;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  text-decoration: none;
   transition: box-shadow 100ms, color 100ms;
 }
 
 input:focus,
-button:focus {
+button:focus,
+.button:focus {
   box-shadow: 0 0 0 5px var(--primary);
   color: var(--dark-text);
   outline: none;
 }
 
-button {
+button,
+.button {
   background-color: var(--secondary);
   text-align: center;
+}
+
+.button--secondary {
+  background-color: var(--primary);
+  color: var(--lightest-text);
+}
+
+/* Header Component */
+.Header {
+  font-size: 1.5em;
+  margin-bottom: 2em !important;
+  text-align: center;
+}
+
+h1 {
+  color: var(--dark-text);
+}
+
+/* Card Component */
+.Card {
+  background-color: var(--secondary-background);
+  border: 2px solid var(--medium-text);
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.Card__action {
+  margin-top: 2em;
 }
 
 /* App Component */
@@ -52,6 +89,10 @@ button {
 
 .App__main-content {
   flex-grow: 1;
+}
+
+.App__main-content,
+.MainColumn {
   margin: 1em auto;
   max-width: 720px;
   width: 80%;
@@ -73,7 +114,7 @@ button {
   list-style: none;
   margin: 0 auto;
   max-width: 720px;
-  padding: 0;
+  padding: 0.2em 0;
   width: 80%;
 }
 
@@ -87,13 +128,17 @@ button {
 
 .Nav__logo:focus,
 .Nav__link:focus {
-  color: white;
+  color: var(--lightest-text);
   outline: none;
   text-decoration-color: var(--secondary);
 }
 
+.Nav__link {
+  font-size: 0.9em;
+}
+
 .Nav__logo {
-  color: white;
+  color: var(--lightest-text);
   font-weight: bold;
 }
 
