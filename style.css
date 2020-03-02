@@ -39,7 +39,6 @@ input:focus,
 button:focus,
 .button:focus {
   box-shadow: 0 0 0 5px var(--primary);
-  color: var(--dark-text);
   outline: none;
 }
 
