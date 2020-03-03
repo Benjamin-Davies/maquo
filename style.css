@@ -100,11 +100,11 @@ h1 {
 /* Nav Component */
 .Nav {
   background: var(--primary);
-  font-size: 0.9em;
+  font-size: 1.5em;
 }
 
-.Nav--large {
-  font-size: 1.5em;
+.Nav.Nav--smaller {
+  font-size: 0.7em;
 }
 
 .Nav__inner {
