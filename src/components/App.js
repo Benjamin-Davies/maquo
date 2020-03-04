@@ -1,4 +1,5 @@
 import Nav from './Nav.js';
+import QuizPreview from './QuizPreview.js';
 import QuizInterface from './QuizInterface.js';
 
 import { useLocationHash } from '../react-utils.js';
@@ -39,6 +40,7 @@ function App() {
   // Find which stage we are on
   const [currentStage, setCurrentStage] = useState(0);
   const CurrentStage = [
+    QuizPreview,
     QuizInterface,
   ][currentStage];
 

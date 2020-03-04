@@ -1,0 +1,1 @@
+const { createElement: c } = React;
