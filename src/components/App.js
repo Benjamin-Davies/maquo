@@ -42,15 +42,23 @@ function App() {
     QuizInterface,
   ][currentStage];
 
+  // The answers once the user has completed the quiz
+  const [answers, setAnswers] = useState(null);
+
   // Switch to the next one
-  const nextStage = useCallback(() => {
-    setCurrentStage(currentStage);
+  const nextStage = useCallback(({ answers }) => {
+    if (answers) setAnswers(answers);
+
+    setCurrentStage(currentStage + 1);
   }, [currentStage]);
+
+  // Don't fail to badly if we forget and edge case
+  if (!CurrentStage) return 'I forgot to finish this';
 
   return c('div', { className: 'App' },
     c(Nav),
     c('main', {className: 'App__main-content'},
-      c(CurrentStage, { quizCode, quizData, nextStage }),
+      c(CurrentStage, { quizCode, quizData, answers, nextStage }),
     ),
   );
 }
