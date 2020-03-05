@@ -48,7 +48,7 @@ function App() {
   const [answers, setAnswers] = useState(null);
 
   // Switch to the next one
-  const nextStage = useCallback(({ answers }) => {
+  const nextStage = useCallback(({ answers } = {}) => {
     if (answers) setAnswers(answers);
 
     setCurrentStage(currentStage + 1);
