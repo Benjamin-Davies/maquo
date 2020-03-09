@@ -3,6 +3,7 @@ import QuizPreview from './QuizPreview.js';
 import QuizInterface from './QuizInterface.js';
 
 import { useLocationHash } from '../react-utils.js';
+import QuizResults from './QuizResults.js';
 
 const { createElement: c, useCallback, useEffect, useState } = React;
 
@@ -42,6 +43,7 @@ function App() {
   const CurrentStage = [
     QuizPreview,
     QuizInterface,
+    QuizResults,
   ][currentStage];
 
   // The answers once the user has completed the quiz
