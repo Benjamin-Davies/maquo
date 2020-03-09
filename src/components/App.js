@@ -55,7 +55,10 @@ function App() {
   }, [currentStage]);
 
   // Don't fail to badly if we forget and edge case
-  if (!CurrentStage) return 'I forgot to finish this';
+  if (!CurrentStage) {
+    location.href = 'teapot';
+    return 'I forgot to finish this';
+  }
 
   return c('div', { className: 'App' },
     c(Nav),

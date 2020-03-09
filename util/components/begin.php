@@ -10,11 +10,11 @@
     <nav class="Nav Nav--large">
         <ul class="Nav__inner">
             <li>
-                <a class="Nav__logo" href="#">Maquo</a>
+                <a class="Nav__logo" href="<?=$root_url?>/">Maquo</a>
             </li>
             <li class="Nav__spacer"></li>
             <li>
-                <a class="Nav__link" href="create/">Create Quiz</a>
+                <a class="Nav__link" href="<?=$root_url?>/create">Create Quiz</a>
             </li>
         </ul>
     </nav>
