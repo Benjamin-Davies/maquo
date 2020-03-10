@@ -161,3 +161,27 @@ h1 {
 .QuizCodePrompt > button {
   margin: 0.5em;
 }
+
+.QuizCodePrompt__results {
+  overflow-y: auto;
+  height: 40vh;
+  margin-bottom: 1em;
+}
+
+.QuizResult {
+  color: black;
+  font-size: 0.7em;
+  padding: 0 1em;
+}
+
+.QuizResult__answer--correct:before {
+  color: green;
+  content: '✓';
+  margin: 0 0.5em 0 0.2em;
+}
+
+.QuizResult__answer--wrong:before {
+  color: red;
+  content: '✗';
+  margin: 0 0.5em 0 0.2em;
+}

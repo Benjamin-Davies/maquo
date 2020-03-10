@@ -5,11 +5,9 @@ function QuizResults({ quizData, answers }) {
         c('h1', { className: 'QuizCodePrompt__title' },
             'Results',
         ),
-        c('table', null,
-            c('tbody', null,
-                quizData.questions.map((question, i) => 
-                    c(QuizResult, { key: i, i, question, answers }),
-                ),
+        c('div', { className: 'QuizCodePrompt__results' },
+            quizData.questions.map((question, i) => 
+                c(QuizResult, { key: i, i, question, answers }),
             ),
         ),
         c('a', { href: '.', className: 'button' },
@@ -21,10 +19,15 @@ function QuizResults({ quizData, answers }) {
 function QuizResult({ i, question, answers }) {
     const answer = answers[i];
 
-    return c('tr', null,
-        c('td', null, question.question),
-        c('td', null, question.answer),
-        c('td', null, answer),
+    return c('div', { className: 'QuizResult Card' },
+        c('h3', null, question.question),
+        c('p', null,
+            'You put: ',
+            c('span', null, answer),
+            answer == question.answer
+                ? c('span', { className: 'QuizResult__answer--correct' })
+                : c('span', { className: 'QuizResult__answer--wrong' }, question.answer),
+        ),
     );
 }
 
