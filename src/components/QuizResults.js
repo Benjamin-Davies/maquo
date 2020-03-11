@@ -5,9 +5,11 @@ function QuizResults({ quizData, answers }) {
         c('h1', { className: 'QuizCodePrompt__title' },
             'Results',
         ),
-        c('div', { className: 'QuizCodePrompt__results' },
-            quizData.questions.map((question, i) => 
-                c(QuizResult, { key: i, i, question, answers }),
+        c('div', { className: 'QuizCodePrompt__results Card' },
+            c('div', null,
+                quizData.questions.map((question, i) => 
+                    c(QuizResult, { key: i, i, question, answers }),
+                ),
             ),
         ),
         c('a', { href: '.', className: 'button' },
@@ -19,7 +21,7 @@ function QuizResults({ quizData, answers }) {
 function QuizResult({ i, question, answers }) {
     const answer = answers[i];
 
-    return c('div', { className: 'QuizResult Card' },
+    return c('div', { className: 'QuizResult' },
         c('h3', null, question.question),
         c('p', null,
             'You put: ',

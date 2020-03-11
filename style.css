@@ -13,7 +13,8 @@
 
 /* General */
 body {
-  background: var(--background);
+  background: linear-gradient(var(--lightest-text), var(--background));
+  background-attachment: fixed;
   color: var(--medium-text);
   font-family: sans-serif;
   margin: 0;
@@ -155,6 +156,7 @@ h1 {
 .QuizCodePrompt__title {
   color: var(--dark-text);
   flex-grow: 1;
+  margin: 0.5em 0;
 }
 
 .QuizCodePrompt > input,
@@ -163,15 +165,36 @@ h1 {
 }
 
 .QuizCodePrompt__results {
-  overflow-y: auto;
-  height: 40vh;
+  display: flex;
+  overflow: hidden;
+  height: 30vh;
   margin-bottom: 1em;
+  padding: 0;
+}
+
+.QuizCodePrompt__results::before,
+.QuizCodePrompt__results::after {
+  content: '';
+  width: 0.5em;
+}
+
+.QuizCodePrompt__results > div {
+  flex: 1 1;
+  overflow-y: auto;
 }
 
 .QuizResult {
   color: black;
   font-size: 0.7em;
   padding: 0 1em;
+}
+
+.QuizResult h3 {
+  margin-block-end: 0.5em;
+}
+
+.QuizResult p {
+  margin-block-start: 0;
 }
 
 .QuizResult__answer--correct:before {
