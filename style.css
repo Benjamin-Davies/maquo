@@ -208,3 +208,13 @@ h1 {
   content: '✗';
   margin: 0 0.5em 0 0.2em;
 }
+
+/* ColumnForm */
+.ColumnForm {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.ColumnForm > input {
+  margin-bottom: 1em;
+}

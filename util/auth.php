@@ -8,4 +8,8 @@ if (isset($_SESSION['username'])) {
     header("Location: ../accounts/login?redirect=$url");
     exit();
 }
+
+function try_login($username, $password) {
+    return false;
+}
 ?>
