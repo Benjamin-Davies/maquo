@@ -1,7 +1,6 @@
 <?php
 $no_redirect_login = true;
 
-require_once('../util/connect.php');
 require_once('../util/auth.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,7 +20,7 @@ $page_title = 'Login';
 require('../util/components/begin.php');
 ?>
 
-<main class="MainColumn">
+<main class="MainColumn MainColumn--double">
     <form action="login" method="POST" class="ColumnForm">
         <h1>Login</h1>
         <?php if (isset($error)) { ?>
@@ -34,6 +33,12 @@ require('../util/components/begin.php');
         ?>">
         <button type="submit">Login</button>
     </form>
+    <div class="Card">
+        <h3>Or you can...</h3>
+        <p>
+            <a href="register" class="button">Register</a>
+        </p>
+    </div>
 </main>
 
 <?php

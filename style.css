@@ -61,7 +61,7 @@ button,
   text-align: center;
 }
 
-h1 {
+h1, h3 {
   color: var(--dark-text);
 }
 
@@ -96,6 +96,14 @@ h1 {
   margin: 1em auto;
   max-width: 720px;
   width: 80%;
+}
+
+@media (min-width: 720px) {
+  .MainColumn--double {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 5em;
+  }
 }
 
 /* Nav Component */
@@ -211,7 +219,7 @@ h1 {
 
 /* ColumnForm */
 .ColumnForm {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
 }
 

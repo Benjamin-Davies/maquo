@@ -3,8 +3,9 @@ $db_name = 'benjamindavies_maquo';
 $db_username = 'benjamindavies';
 $db_password = 'secret';
 
-if (file_exists('../secret.php')) {
-    require('../secret.php');
+$secrets_file = __DIR__.'/../../secret.php';
+if (file_exists($secrets_file)) {
+    require $secrets_file;
 }
 
 try {
@@ -16,7 +17,5 @@ try {
     http_response_code(500);
     header('Content-Type: text/plain');
     echo "Failed to connect to db\n";
-    //echo $e;
     exit();
 }
-?>

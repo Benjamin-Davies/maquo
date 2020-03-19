@@ -16,6 +16,11 @@
             <li>
                 <a class="Nav__link" href="<?=$root_url?>/create">Create Quiz</a>
             </li>
+            <?php if (isset($user_id)) { ?>
+                <li>
+                    <a class="Nav__link" href="<?=$root_url?>/accounts/logout">Logout</a>
+                </li>
+            <?php } ?>
         </ul>
     </nav>
     <main>
