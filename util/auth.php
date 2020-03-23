@@ -11,15 +11,30 @@ if (isset($_SESSION['user_id'])) {
     exit();
 }
 
-function try_login($username, $password) {
+function login($username, $password) {
     $user = get_user_by_username($username);
 
-    if (password_verify($password, $user['password_hash'])) {
-        $_SESSION['user_id'] = $user['id'];
-        return true;
-    } else {
-        return false;
+    if (!password_verify($password, $user['password_hash'])) {
+        throw new Exception('Wrong username or password');
     }
+
+    $_SESSION['user_id'] = $user['id'];
+}
+
+function register($email, $username, $password, $confirm_password) {
+    $existing_user = get_user_by_username($username);
+
+    if ($password !== $confirm_password) {
+      throw new Exception('Passwords must match');
+    }
+
+    if (isset($existing_user['id'])) {
+      throw new Exception('Username is already in use');
+    }
+
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $id = create_user($email, $username, $password_hash);
+    $_SESSION['user_id'] = $id;
 }
 
 function logout() {

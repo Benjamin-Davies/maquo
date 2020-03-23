@@ -4,14 +4,14 @@ $no_redirect_login = true;
 require_once('../util/auth.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $success = try_login($_POST['username'], $_POST['password']);
+    try {
+        login($_POST['username'], $_POST['password']);
 
-    if ($success) {
         $redirect = $_POST['redirect'];
         header("Location: $redirect");
         exit();
-    } else {
-        $error = 'Wrong username or password';
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
 }
 
@@ -38,7 +38,9 @@ require('../util/components/begin.php');
     <div class="Card">
         <h3>Or you can...</h3>
         <p>
-            <a href="register" class="button">Register</a>
+          <a href="register?redirect=<?=
+              urlencode($_GET['redirect'])
+          ?>" class="button">Register</a>
         </p>
     </div>
 </main>
