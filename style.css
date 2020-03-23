@@ -228,5 +228,10 @@ h1, h3 {
 }
 
 .ColumnForm > label {
-  margin-left: 1em;
+  margin: 0 1em 0.2em;
+}
+
+.ColumnForm > .error {
+  color: red;
+  font-weight: bold;
 }

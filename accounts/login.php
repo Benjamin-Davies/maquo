@@ -23,17 +23,17 @@ require('../util/components/begin.php');
 <main class="MainColumn MainColumn--double">
     <form method="POST" class="ColumnForm">
         <h1>Login</h1>
-        <?php if (isset($error)) { ?>
-            <span><?= $error ?></span>
-        <?php } ?>
         <label for="username">Username:</label>
-        <input type="text" name="username" id="password">
+        <input type="text" name="username" id="username">
         <label for="password">Password:</label>
         <input type="password" name="password" id="password">
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">
         <button type="submit">Login</button>
+        <?php if (isset($error)) { ?>
+            <p class="error"><?= $error ?></p>
+        <?php } ?>
     </form>
     <div class="Card">
         <h3>Or you can...</h3>
