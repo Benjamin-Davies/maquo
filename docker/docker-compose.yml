@@ -1,0 +1,26 @@
+version: '3.2'
+services:
+  php:
+    build: './php/'
+    volumes:
+      - ../:/var/www/html/
+  apache:
+    build: './apache/'
+    depends_on:
+      - php
+      - mysql
+    ports:
+      - "8080:80"
+    volumes:
+      - ../:/var/www/html/
+  mysql:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: benjamindavies_maquo
+      MYSQL_USER: benjamindavies
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dev-db/:/var/lib/mysql/
