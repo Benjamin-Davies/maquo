@@ -4,43 +4,35 @@ $no_redirect_login = true;
 require_once('../util/auth.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $success = try_login($_POST['username'], $_POST['password']);
+    $success = try_register($_POST['username'], $_POST['password']);
 
     if ($success) {
         $redirect = $_POST['redirect'];
         header("Location: $redirect");
         exit();
     } else {
-        $error = 'Wrong username or password';
+        $error = 'Bad person, there should be an error here.';
     }
 }
 
 $root_url = '..';
-$page_title = 'Login';
+$page_title = 'Register';
 require('../util/components/begin.php');
 ?>
 
-<main class="MainColumn MainColumn--double">
+<main class="MainColumn">
     <form method="POST" class="ColumnForm">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <?php if (isset($error)) { ?>
             <span><?= $error ?></span>
         <?php } ?>
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="password">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="text" name="username">
+        <input type="password" name="password">
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
     </form>
-    <div class="Card">
-        <h3>Or you can...</h3>
-        <p>
-            <a href="register" class="button">Register</a>
-        </p>
-    </div>
 </main>
 
 <?php

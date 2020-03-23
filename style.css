@@ -226,3 +226,7 @@ h1, h3 {
 .ColumnForm > input {
   margin-bottom: 1em;
 }
+
+.ColumnForm > label {
+  margin-left: 1em;
+}
