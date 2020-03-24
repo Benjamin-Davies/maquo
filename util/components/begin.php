@@ -16,6 +16,9 @@
             <li>
                 <a class="Nav__link" href="<?=$root_url?>/create">Create Quiz</a>
             </li>
+            <li>
+                <a class="Nav__link" href="<?=$root_url?>/accounts/my-account">My Account</a>
+            </li>
             <?php if (isset($user_id)) { ?>
                 <li>
                     <a class="Nav__link" href="<?=$root_url?>/accounts/logout">Logout</a>
@@ -24,4 +27,3 @@
         </ul>
     </nav>
     <main>
-    

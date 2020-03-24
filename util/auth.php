@@ -22,14 +22,13 @@ function login($username, $password) {
 }
 
 function register($email, $username, $password, $confirm_password) {
-    $existing_user = get_user_by_username($username);
-
     if ($password !== $confirm_password) {
-      throw new Exception('Passwords must match');
+        throw new Exception('Passwords must match');
     }
 
+    $existing_user = get_user_by_username($username);
     if (isset($existing_user['id'])) {
-      throw new Exception('Username is already in use');
+        throw new Exception('Username is already in use');
     }
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -39,4 +38,28 @@ function register($email, $username, $password, $confirm_password) {
 
 function logout() {
     unset($_SESSION['user_id']);
+}
+
+function change_password($old_password, $new_password, $confirm_password) {
+    global $user_id;
+
+    if ($new_password !== $confirm_password) {
+        throw new Exception('Passwords must match');
+    }
+
+    $user = get_user($user_id);
+    if (!password_verify($old_password, $user['password_hash'])) {
+        throw new Exception('Wrong password');
+    }
+
+    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+    update_user_password_hash($user_id, $password_hash);
+}
+
+function delete_account() {
+    global $user_id;
+
+    delete_user($user_id);
+
+    logout();
 }

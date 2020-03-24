@@ -1,4 +1,4 @@
-<?php 
+<?php
 $root_url = '.';
 $page_title = 'Welcome';
 ?>

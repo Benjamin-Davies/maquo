@@ -25,6 +25,7 @@ body {
 input,
 button,
 .button {
+  display: inline-block;
   border: 2px solid var(--medium-text);
   border-radius: 1em;
   box-shadow: 0 3px 5px 2px var(--shadow);
@@ -96,6 +97,10 @@ h1, h3 {
   margin: 1em auto;
   max-width: 720px;
   width: 80%;
+}
+
+.MainColumn > section {
+    margin-bottom: 3em;
 }
 
 @media (min-width: 720px) {
