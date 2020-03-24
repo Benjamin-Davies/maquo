@@ -1,30 +1,32 @@
 <?php
 require_once('../util/auth.php');
 
-if ($_POST['update'] === 'details') {
-    try {
-        update_user_details($user_id,
-            $_POST['email'], $_POST['username']);
-        $message = 'Successfully updated user details';
-    } catch (Exception $e) {
-        $message = $e->getMessage();
-    }
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if ($_POST['update'] === 'details') {
+      try {
+          update_user_details($user_id,
+              $_POST['email'], $_POST['username']);
+          $message = 'Successfully updated user details';
+      } catch (Exception $e) {
+          $message = $e->getMessage();
+      }
+  }
 
-if ($_POST['update'] === 'password') {
-    try {
-        change_password(
-            $_POST['old_password'],
-            $_POST['new_password'],
-            $_POST['confirm_password']);
-        $message = 'Successfully changed password';
-    } catch (Exception $e) {
-        $message = $e->getMessage();
-    }
-}
+  if ($_POST['update'] === 'password') {
+      try {
+          change_password(
+              $_POST['old_password'],
+              $_POST['new_password'],
+              $_POST['confirm_password']);
+          $message = 'Successfully changed password';
+      } catch (Exception $e) {
+          $message = $e->getMessage();
+      }
+  }
 
-if ($_POST['update'] === 'delete_account') {
-    $delete_account = true;
+  if ($_POST['update'] === 'delete_account') {
+      $delete_account = true;
+  }
 }
 
 $user = get_user($user_id);
