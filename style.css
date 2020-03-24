@@ -44,6 +44,13 @@ button:focus,
   outline: none;
 }
 
+input:disabled,
+button:disabled,
+.button:disabled {
+  background: var(--light-text);
+  box-shadow: none;
+}
+
 button,
 .button {
   background-color: var(--secondary);

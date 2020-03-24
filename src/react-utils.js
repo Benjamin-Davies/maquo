@@ -13,3 +13,18 @@ export function useEvent(elem, event, listener, deps) {
     return () => elem.removeEventListener(event, listener);
   }, deps);
 }
+
+export function useFetchJson(url) {
+  const [result, setResult] = useState({});
+
+  useEffect(() => {
+    fetch(url).then(res => {
+      if (!res.ok)
+        throw `Server responded with ${res.status} ${res.statusText}`;
+
+      return res.json();
+    }).then(setResult);
+  }, [url]);
+
+  return result;
+}

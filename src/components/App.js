@@ -2,14 +2,14 @@ import Nav from './Nav.js';
 import QuizPreview from './QuizPreview.js';
 import QuizInterface from './QuizInterface.js';
 
-import { useLocationHash } from '../react-utils.js';
+import { useLocationHash, useFetchJson } from '../react-utils.js';
 import QuizResults from './QuizResults.js';
 
 const { createElement: c, useCallback, useEffect, useState } = React;
 
 function App() {
   const quizCode = useLocationHash().slice(1);
-  
+
   // Redirect to home page if we don't get a quiz code
   useEffect(() => {
     if (!quizCode) {
@@ -18,25 +18,7 @@ function App() {
   }, [quizCode]);
 
   // Fetch the quiz details
-  // TODO: actually do it
-  const quizData = {
-    title: 'A Quiz',
-    description: 'Test your mental skillabilities',
-    questions: [
-      {
-        question: 'One',
-        answer: '1',
-      },
-      {
-        question: 'Two',
-        answer: '2',
-      },
-      {
-        question: 'Three',
-        answer: '3',
-      },
-    ]
-  };
+  const quizData = useFetchJson(`./api/quiz?id=${quizCode}`);
 
   // Find which stage we are on
   const [currentStage, setCurrentStage] = useState(0);

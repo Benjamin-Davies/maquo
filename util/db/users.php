@@ -27,7 +27,7 @@ function get_user($id) {
     if (!$success) {
         throw new Exception('Failed to get user details');
     }
-    return $stmt->fetch();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function get_user_by_username($username) {
@@ -40,7 +40,7 @@ function get_user_by_username($username) {
     if (!$success) {
         throw new Exception('Failed to get user details');
     }
-    return $stmt->fetch();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function update_user_details($id, $email, $username) {
