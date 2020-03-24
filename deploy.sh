@@ -17,7 +17,9 @@ fi <<EOF
 cd Web/
 ls
 cd 201COS/benjamindavies/maquo/
-mkdir src
-put -r src
-put index.html
+
+put -r *
+
+reput -r .git
+put -r .git/refs .git/
 EOF
