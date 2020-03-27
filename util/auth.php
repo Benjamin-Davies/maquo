@@ -80,7 +80,12 @@ function signup_with_google($username) {
 }
 
 function logout() {
+    global $user_id;
+
     unset($_SESSION['user_id']);
+
+    $user = get_user($user_id);
+    return $user['google_id'];
 }
 
 function change_password($old_password, $new_password, $confirm_password) {
@@ -102,7 +107,7 @@ function change_password($old_password, $new_password, $confirm_password) {
 function delete_account() {
     global $user_id;
 
-    delete_user($user_id);
-
     logout();
+
+    delete_user($user_id);
 }
