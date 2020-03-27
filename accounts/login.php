@@ -17,8 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $root_url = '..';
 $page_title = 'Log In';
-$google_platform_library = true;
-$google_platform_library_onload = 'render_button';
+$google_platform = true;
 require('../util/components/begin.php');
 ?>
 
@@ -78,7 +77,7 @@ async function on_success(user) {
 function on_failure(error) {
   console.log(error);
 }
-function render_button() {
+function on_load() {
   gapi.signin2.render('google-signin', {
     'scope': 'profile email',
     'longtitle': true,

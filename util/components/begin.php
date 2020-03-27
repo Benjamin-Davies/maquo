@@ -7,14 +7,10 @@
     <link rel="icon" href="<?=$root_url?>/assets/icon.png">
     <link rel="stylesheet" href="<?=$root_url?>/style.css">
 <?php
-if (isset($google_platform_library)) {
+if (isset($google_platform)) {
     require __DIR__.'/../oauth.php';
 ?>
-    <script src="https://apis.google.com/js/platform.js<?php
-    if (isset($google_platform_library_onload)) {
-        echo '?onload='.$google_platform_library_onload;
-    }
-?>" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=on_load" async defer></script>
     <meta name="google-signin-client_id" content="<?=$oauth->web->client_id?>">
 <?php
 }
