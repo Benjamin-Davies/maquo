@@ -17,7 +17,7 @@ function get_quiz($id) {
 function get_quizzes() {
     global $db;
 
-    $sql = 'SELECT * FROM quizzes';
+    $sql = 'SELECT * FROM quizzes ORDER BY id DESC';
     $stmt = $db->prepare($sql);
     $success = $stmt->execute();
     if (!$success) {
