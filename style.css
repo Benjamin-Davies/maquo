@@ -73,6 +73,10 @@ h1, h3 {
   color: var(--dark-text);
 }
 
+h1 .small {
+  font-size: 0.8em;
+}
+
 /* Card Component */
 .Card {
   background-color: var(--secondary-background);

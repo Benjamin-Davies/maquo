@@ -1,4 +1,7 @@
 <?php
+require 'util/db/quizzes.php';
+require 'util/db/users.php';
+
 $root_url = '.';
 $page_title = 'Welcome';
 ?>
@@ -12,11 +15,14 @@ $page_title = 'Welcome';
 </header>
 
 <main class="MainColumn">
-<?php for ($i = 0; $i < 5; $i++) { ?>
+<?php foreach (get_quizzes() as $quiz) { ?>
     <section class="Card">
-        <h1>A<?php for ($j = 0; $j < $i; $j++) { echo 'nother'; } ?> Quizz</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, ut?</p>
-        <p class="Card__action"><a href="quiz#123456" class="button button--secondary">Take The Quiz</a></p>
+        <h1>
+            <?=$quiz['name']?>
+            <span class="small">By <?=get_user($quiz['author_id'])['username']?></span>
+        </h1>
+        <p><?=$quiz['description']?></p>
+        <p class="Card__action"><a href="quiz#<?=$quiz['id']?>" class="button button--secondary">Take The Quiz</a></p>
     </section>
 <?php } ?>
 </main>

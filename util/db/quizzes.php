@@ -13,3 +13,15 @@ function get_quiz($id) {
     }
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function get_quizzes() {
+    global $db;
+
+    $sql = 'SELECT * FROM quizzes';
+    $stmt = $db->prepare($sql);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to get quizzes');
+    }
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
