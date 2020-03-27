@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $root_url = '..';
 $page_title = 'Log In';
+$google_platform_library = true;
+$google_platform_library_onload = 'render_button';
 require('../util/components/begin.php');
 ?>
 
@@ -42,8 +44,50 @@ require('../util/components/begin.php');
               urlencode($_GET['redirect'])
           ?>" class="button">Sign Up</a>
         </p>
+        <p>
+            <div id="google-signin"></div>
+        </p>
     </div>
 </main>
+
+<script>
+async function on_success(user) {
+  const id_token = user.getAuthResponse().id_token;
+
+  const body = new FormData();
+  body.append('idtoken', id_token);
+
+  const res = await fetch('g-login', { method: 'POST', body });
+  if (!res.ok) throw 'Error in g-login';
+
+  const text = await res.text();
+
+  switch (text) {
+    case 'success':
+      const url_params = new URLSearchParams(location.search);
+      const redirect = url_params.get('redirect');
+      location.replace(redirect);
+      break;
+    case 'signup':
+      location.replace(`g-signup${location.search}`);
+      break;
+    default:
+      throw text;
+  }
+}
+function on_failure(error) {
+  console.log(error);
+}
+function render_button() {
+  gapi.signin2.render('google-signin', {
+    'scope': 'profile email',
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': on_success,
+    'onfailure': on_failure
+  });
+}
+</script>
 
 <?php
 require('../util/components/end.php')

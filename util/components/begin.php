@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $page_title;?> - Maquo</title>
+    <title><?=$page_title?> - Maquo</title>
     <link rel="icon" href="<?=$root_url?>/assets/icon.png">
     <link rel="stylesheet" href="<?=$root_url?>/style.css">
+<?php
+if (isset($google_platform_library)) {
+    require __DIR__.'/../oauth.php';
+?>
+    <script src="https://apis.google.com/js/platform.js<?php
+    if (isset($google_platform_library_onload)) {
+        echo '?onload='.$google_platform_library_onload;
+    }
+?>" async defer></script>
+    <meta name="google-signin-client_id" content="<?=$oauth->web->client_id?>">
+<?php
+}
+?>
 </head>
 <body>
     <nav class="Nav Nav--large">

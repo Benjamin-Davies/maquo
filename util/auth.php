@@ -21,6 +21,34 @@ function login($username, $password) {
     $_SESSION['user_id'] = $user['id'];
 }
 
+function login_with_google($token) {
+  require __DIR__.'/oauth.php';
+
+  $tokeninfo = get_tokeninfo($token);
+
+  if ($tokeninfo->aud !== $oauth->web->client_id) {
+    throw new Exception('Token audience does not match our client_id');
+  }
+
+  $google_id = $tokeninfo->sub;
+  $user = get_user_by_google_id($google_id);
+
+  if ($user) {
+    $_SESSION['user_id'] = $user['id'];
+    return 'success';
+  } else {
+    $_SESSION['g-signup-google_id'] = $google_id;
+    $_SESSION['g-signup-email'] = $tokeninfo->email;
+    return 'signup';
+  }
+}
+
+function get_tokeninfo($token) {
+    $url = 'https://oauth2.googleapis.com/tokeninfo?id_token='.$token;
+    $res = file_get_contents($url);
+    return json_decode($res);
+}
+
 function signup($email, $username, $password, $confirm_password) {
     if ($password !== $confirm_password) {
         throw new Exception('Passwords must match');
@@ -32,8 +60,23 @@ function signup($email, $username, $password, $confirm_password) {
     }
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $id = create_user($email, $username, $password_hash);
+    $id = create_user($email, $username, $password_hash, '');
     $_SESSION['user_id'] = $id;
+}
+
+function signup_with_google($username) {
+    $existing_user = get_user_by_username($username);
+    if (isset($existing_user['id'])) {
+        throw new Exception('Username is already in use');
+    }
+
+    $google_id = $_SESSION['g-signup-google_id'];
+    $email = $_SESSION['g-signup-email'];
+    $id = create_user($email, $username, '', $google_id);
+    $_SESSION['user_id'] = $id;
+
+    unset($_SESSION['g-signup-google_id']);
+    unset($_SESSION['g-signup-email']);
 }
 
 function logout() {

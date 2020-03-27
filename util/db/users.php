@@ -1,15 +1,16 @@
 <?php
 require_once __DIR__.'/connect.php';
 
-function create_user($email, $username, $password_hash) {
+function create_user($email, $username, $password_hash, $google_id) {
     global $db;
 
-    $sql = 'INSERT INTO `users` (`id`, `email`, `username`, `password_hash`)
-            VALUES (NULL, :email, :username, :password_hash)';
+    $sql = 'INSERT INTO `users` (`id`, `email`, `username`, `password_hash`, `google_id`)
+            VALUES (NULL, :email, :username, :password_hash, :google_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':email', $email);
     $stmt->bindValue(':username', $username);
     $stmt->bindValue(':password_hash', $password_hash);
+    $stmt->bindValue(':google_id', $google_id);
     $success = $stmt->execute();
     if (!$success) {
         throw new Exception('Failed to create user');
@@ -36,6 +37,19 @@ function get_user_by_username($username) {
     $sql = 'SELECT * FROM users WHERE username = :username';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to get user details');
+    }
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function get_user_by_google_id($google_id) {
+    global $db;
+
+    $sql = 'SELECT * FROM users WHERE google_id = :google_id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':google_id', $google_id);
     $success = $stmt->execute();
     if (!$success) {
         throw new Exception('Failed to get user details');
