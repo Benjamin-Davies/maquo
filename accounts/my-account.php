@@ -87,7 +87,7 @@ if (isset($message)) {
 ?>
 <script>
     if (confirm('Are you sure that you want to delete your account?')) {
-        location.href = 'delete-account';
+        location.href = 'logout?delete';
     }
 </script>
 <?php

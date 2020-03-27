@@ -79,12 +79,15 @@ function signup_with_google($username) {
     unset($_SESSION['g-signup-email']);
 }
 
-function logout() {
+function logout($delete) {
     global $user_id;
 
     unset($_SESSION['user_id']);
 
     $user = get_user($user_id);
+    if ($delete) {
+        delete_user($user_id);
+    }
     return $user['google_id'];
 }
 
@@ -102,12 +105,4 @@ function change_password($old_password, $new_password, $confirm_password) {
 
     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
     update_user_password_hash($user_id, $password_hash);
-}
-
-function delete_account() {
-    global $user_id;
-
-    logout();
-
-    delete_user($user_id);
 }

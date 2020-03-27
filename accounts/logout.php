@@ -3,7 +3,8 @@ $no_redirect_login = true;
 
 require_once('../util/auth.php');
 
-$google_id = logout();
+$delete = isset($_GET['delete']);
+$google_id = logout($delete);
 
 if (!$google_id) {
     header("Location: ../");
