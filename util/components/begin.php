@@ -22,7 +22,7 @@
             </li>
             <?php if (isset($user_id)) { ?>
                 <li>
-                    <a class="Nav__link" href="<?=$root_url?>/accounts/logout">Logout</a>
+                    <a class="Nav__link" href="<?=$root_url?>/accounts/logout">Log Out</a>
                 </li>
             <?php } ?>
         </ul>

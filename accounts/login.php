@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $root_url = '..';
-$page_title = 'Login';
+$page_title = 'Log In';
 require('../util/components/begin.php');
 ?>
 
 <main class="MainColumn MainColumn--double">
     <form method="POST" class="ColumnForm">
-        <h1>Login</h1>
+        <h1>Log In</h1>
         <label for="username">Username:</label>
         <input type="text" name="username" id="username">
         <label for="password">Password:</label>
@@ -30,7 +30,7 @@ require('../util/components/begin.php');
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">
-        <button type="submit">Login</button>
+        <button type="submit">Log In</button>
         <?php if (isset($error)) { ?>
             <p class="error"><?= $error ?></p>
         <?php } ?>
@@ -38,9 +38,9 @@ require('../util/components/begin.php');
     <div class="Card">
         <h3>Or you can...</h3>
         <p>
-          <a href="register?redirect=<?=
+          <a href="signup?redirect=<?=
               urlencode($_GET['redirect'])
-          ?>" class="button">Register</a>
+          ?>" class="button">Sign Up</a>
         </p>
     </div>
 </main>

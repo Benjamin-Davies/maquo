@@ -21,7 +21,7 @@ function login($username, $password) {
     $_SESSION['user_id'] = $user['id'];
 }
 
-function register($email, $username, $password, $confirm_password) {
+function signup($email, $username, $password, $confirm_password) {
     if ($password !== $confirm_password) {
         throw new Exception('Passwords must match');
     }

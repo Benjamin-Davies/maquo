@@ -5,7 +5,7 @@ require_once('../util/auth.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        register(
+        signup(
             $_POST['email'],
             $_POST['username'],
             $_POST['password'],
@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $root_url = '..';
-$page_title = 'Register';
+$page_title = 'Sign Up';
 require('../util/components/begin.php');
 ?>
 
 <main class="MainColumn">
     <form method="POST" class="ColumnForm">
-        <h1>Register</h1>
+        <h1>Sign Up</h1>
         <label for="email">Email:</label>
         <input type="email" name="email" id="email">
         <label for="username">Username:</label>
@@ -38,7 +38,7 @@ require('../util/components/begin.php');
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">
-        <button type="submit">Register</button>
+        <button type="submit">Sign Up</button>
         <?php if (isset($error)) { ?>
             <p class="error"><?= $error ?></p>
         <?php } ?>
