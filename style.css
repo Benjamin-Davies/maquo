@@ -21,6 +21,11 @@ body {
   height: 100vh;
 }
 
+/* Center */
+.center {
+  text-align: center;
+}
+
 /* Inputs and Buttons */
 input,
 button,
