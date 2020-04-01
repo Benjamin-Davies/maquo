@@ -14,6 +14,20 @@ if (isset($google_platform)) {
     <meta name="google-signin-client_id" content="<?=$oauth->web->client_id?>">
 <?php
 }
+
+if (isset($links)) {
+    foreach ($links as $link) {
+?>
+    <link
+<?php
+        foreach ($link as $k => $v) {
+            echo "$k=\"$v\"";
+        }
+?>
+    >
+<?php
+    }
+}
 ?>
 </head>
 <body>

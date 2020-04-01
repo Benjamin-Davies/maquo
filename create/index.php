@@ -29,7 +29,7 @@ if (empty($user_quizzes)) {
         <h1><?=$quiz['name']?></h1>
         <p><?=$quiz['description']?></p>
         <p class="Card__action">
-            <a href="edit?id=<?=$quiz['id']?>"
+            <a href="edit#<?=$quiz['id']?>"
                 class="button">Edit Quiz</a>
             <a href="../quiz#<?=$quiz['id']?>"
                 class="button button--secondary">Take The Quiz</a>
