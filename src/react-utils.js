@@ -14,17 +14,29 @@ export function useEvent(elem, event, listener, deps) {
   }, deps);
 }
 
-export function useFetchJson(url) {
-  const [result, setResult] = useState({});
+export function useAsync(fn, deps) {
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch(url).then(res => {
-      if (!res.ok)
-        throw `Server responded with ${res.status} ${res.statusText}`;
+    let canceled = false;
 
-      return res.json();
-    }).then(setResult);
-  }, [url]);
+    fn().then(res => {
+      if (!canceled) setResult(res);
+    });
+
+    return () => canceled = true;
+  }, deps);
 
   return result;
+}
+
+export function useFetchJson(url) {
+  return useAsync(async () => {
+    const res = await fetch(url);
+
+    if (!res.ok)
+      throw `Server responded with ${res.status} ${res.statusText}`;
+
+    return await res.json();
+  }, [url]);
 }
