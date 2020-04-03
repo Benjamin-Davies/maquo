@@ -1,5 +1,5 @@
 import { useAsync, useLocationHash } from '../../src/react-utils.js';
-import { getQuiz, updateQuiz, updateQuestion } from './api.js';
+import { getQuiz, updateQuiz, updateQuestion, deleteQuestion } from './api.js';
 
 const { createElement: c, useCallback, useEffect, useState } = React;
 
@@ -42,7 +42,7 @@ function EditDetails({ fetchedQuiz }) {
 function EditQuestions({ fetchedQuiz }) {
   const [questions, setQuestions] = useState(fetchedQuiz.questions.sort(orderQuestions));
 
-  const onQuestionChange = useCallback(({ target: { id, value } }) => {
+  const onChange = useCallback(({ target: { id, value } }) => {
     const [questionId, key] = id.split('.');
     const i = questions.findIndex(q => q.id === questionId);
     const question = questions[i];
@@ -55,20 +55,34 @@ function EditQuestions({ fetchedQuiz }) {
     setQuestions(newQuestions);
   }, [questions]);
 
+  const onDelete = useCallback(({ target: { id } }) => {
+    const [questionId, _] = id.split('.');
+    const i = questions.findIndex(q => q.id === questionId);
+
+    deleteQuestion(id);
+
+    const newQuestions = Array.from(questions);
+    newQuestions.splice(i, 1);
+    setQuestions(newQuestions);
+  }, [questions]);
+
   return c('section', null,
     questions?.map(question =>
-      c(Question, { onChange: onQuestionChange, question }),
+      c(Question, { onChange, onDelete, question }),
     ),
   );
 }
 
-function Question({ onChange, question: { id, question, answer } }) {
+function Question({ onChange, onDelete, question: { id, question, answer } }) {
   return c('div', { className: 'Card', key: id },
     c('div', { className: 'ColumnForm' },
       c('label', { for: `${id}.question` }, 'Question'),
       c('input', { id: `${id}.question`, value: question, onChange }),
       c('label', { for: `${id}.answer` }, 'Answer'),
       c('input', { id: `${id}.answer`, value: answer, onChange }),
+    ),
+    c('p', { className: 'Card__action' },
+      c('button', { id: `${id}.delete`, onClick: onDelete }, 'Delete'),
     ),
   );
 }

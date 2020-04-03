@@ -46,3 +46,16 @@ function update_question($id, $question, $answer, $number) {
         throw new Exception('Failed to update question');
     }
 }
+
+function delete_question($id) {
+    global $db;
+
+    $sql = 'DELETE FROM `questions`
+            WHERE id = :id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to delete question');
+    }
+}
