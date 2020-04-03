@@ -57,8 +57,7 @@ function EditQuestions({ fetchedQuiz }) {
 
     const newQuestions = Array.from(questions);
     newQuestions.push(newQuestion);
-    newQuestions.sort(orderQuestions);
-    setQuestions([...questions, newQuestion]);
+    setQuestions(newQuestions);
   }, [questions]);
 
   const onChange = useCallback(({ target: { id, value } }) => {
@@ -71,6 +70,29 @@ function EditQuestions({ fetchedQuiz }) {
 
     const newQuestions = Array.from(questions);
     newQuestions[i] = newQuestion;
+    setQuestions(newQuestions);
+  }, [questions]);
+
+  const onMove = useCallback(({ target: { id, value } }) => {
+    const [questionId, direction] = id.split('.');
+    const directionSign = direction === 'up' ? -1 : 1;
+
+    const indexA = questions.findIndex(q => q.id === questionId);
+    const indexB = indexA + directionSign;
+
+    const questionA = questions[indexA];
+    const questionB = questions[indexB];
+
+    const newQuestionA = { ...questionA, number: questionB.number };
+    const newQuestionB = { ...questionB, number: questionA.number };
+
+    updateQuestion(newQuestionA);
+    updateQuestion(newQuestionB);
+
+    const newQuestions = Array.from(questions);
+    newQuestions[indexA] = newQuestionB;
+    newQuestions[indexB] = newQuestionA;
+
     setQuestions(newQuestions);
   }, [questions]);
 
@@ -90,13 +112,13 @@ function EditQuestions({ fetchedQuiz }) {
     c('p', null,
       c('button', { onClick: onNew }, 'New Question'),
     ),
-    questions?.map(question =>
-      c(Question, { onChange, onDelete, question }),
+    questions?.map((question, index) =>
+      c(Question, { onChange, onDelete, onMove, question, index, length: questions.length }),
     ),
   );
 }
 
-function Question({ onChange, onDelete, question: { id, question, answer } }) {
+function Question({ onChange, onDelete, onMove, question: { id, question, answer }, index, length }) {
   return c('div', { className: 'Card', key: id },
     c('div', { className: 'ColumnForm' },
       c('label', { for: `${id}.question` }, 'Question'),
@@ -105,6 +127,8 @@ function Question({ onChange, onDelete, question: { id, question, answer } }) {
       c('input', { id: `${id}.answer`, value: answer, onChange }),
     ),
     c('div', null,
+      c('button', { id: `${id}.up`, disabled: index === 0, onClick: onMove }, 'Move Up'),
+      c('button', { id: `${id}.down`, disabled: index >= length - 1, onClick: onMove }, 'Move Down'),
       c('button', { id: `${id}.delete`, onClick: onDelete }, 'Delete'),
     ),
   );

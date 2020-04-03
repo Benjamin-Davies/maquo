@@ -96,6 +96,11 @@ h1 .small {
   margin-top: 2em;
 }
 
+.Card button,
+.Card .button {
+  margin-right: 0.5em;
+}
+
 /* App Component */
 .App {
   display: flex;
