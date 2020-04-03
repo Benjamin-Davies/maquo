@@ -266,3 +266,37 @@ h1 .small {
   color: red;
   font-weight: bold;
 }
+
+/* Mobile */
+@media (max-width: 600px) {
+  /* Nav */
+  .Nav__inner {
+    flex-direction: column;
+  }
+
+  .Nav__spacer {
+    height: 0.5em;
+  }
+
+  /* Buttons */
+  button,
+  .button {
+    display: block;
+    font-size: 1.2em;
+    width: 100%;
+  }
+
+  .Card button,
+  .Card .button {
+    margin: 6pt 0 0 0;
+  }
+
+  /* App */
+  .App {
+    font-size: 18pt;
+  }
+
+  .QuizCodePrompt {
+    overflow: hidden;
+  }
+}
