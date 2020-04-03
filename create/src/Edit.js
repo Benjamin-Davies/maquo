@@ -1,5 +1,5 @@
 import { useAsync, useLocationHash } from '../../src/react-utils.js';
-import { createQuestion, getQuiz, updateQuiz, updateQuestion, deleteQuestion } from './api.js';
+import { createQuestion, getQuiz, updateQuiz, updateQuestion, deleteQuiz, deleteQuestion } from './api.js';
 
 const { createElement: c, useCallback, useState } = React;
 
@@ -29,8 +29,18 @@ function EditDetails({ fetchedQuiz }) {
     setQuiz(newQuiz);
   }, [quiz]);
 
+  const onDelete = useCallback(async () => {
+    if (confirm('Are you sure that you want to delete this quiz?')) {
+      await deleteQuiz(quiz.id);
+      location.href = '.';
+    }
+  });
+
   return c('section', null,
     c('div', { className: 'ColumnForm' },
+      c('p', null,
+        c('button', { onClick: onDelete }, 'Delete Quiz'),
+      ),
       c('label', { for: 'name' }, 'Name:'),
       c('input', { id: 'name', value: quiz.name, onChange }),
       c('label', { for: 'description' }, 'Description:'),
@@ -94,7 +104,7 @@ function Question({ onChange, onDelete, question: { id, question, answer } }) {
       c('label', { for: `${id}.answer` }, 'Answer'),
       c('input', { id: `${id}.answer`, value: answer, onChange }),
     ),
-    c('p', { className: 'Card__action' },
+    c('div', null,
       c('button', { id: `${id}.delete`, onClick: onDelete }, 'Delete'),
     ),
   );

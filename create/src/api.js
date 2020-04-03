@@ -41,6 +41,17 @@ async function updateQuestionSimple({ id, question, answer, number }) {
   if (!res.ok) throw 'Could not update question';
 }
 
+export async function deleteQuiz(id) {
+  const body = new FormData();
+  body.append('id', id);
+
+  const res = await fetch(`${apiRoot}/delete-quiz`, {
+    method: 'POST',
+    body,
+  });
+  if (!res.ok) throw 'Could not delete quiz';
+}
+
 export async function deleteQuestion(id) {
   const body = new FormData();
   body.append('id', id);
@@ -49,7 +60,7 @@ export async function deleteQuestion(id) {
     method: 'POST',
     body,
   });
-  if (!res.ok) throw 'Could not update question';
+  if (!res.ok) throw 'Could not delete question';
 }
 
 // Throttle the function to:

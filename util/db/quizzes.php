@@ -70,3 +70,16 @@ function update_quiz_details($id, $name, $description) {
         throw new Exception('Failed to update quiz');
     }
 }
+
+function delete_quiz($id) {
+    global $db;
+
+    $sql = 'DELETE FROM `quizzes`
+            WHERE id = :id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to delete quiz');
+    }
+}
