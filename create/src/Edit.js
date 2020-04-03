@@ -9,19 +9,38 @@ function Edit() {
   const quizId = useLocationHash().slice(1);
   const fetchedQuiz = useAsync(() => getQuiz(quizId), [quizId]);
 
-  const [quiz, setQuiz] = useState(null);
-  const [questions, setQuestions] = useState(null);
-  useEffect(() => {
-    if (fetchedQuiz) setQuiz(fetchedQuiz);
-    if (fetchedQuiz?.questions)
-      setQuestions(fetchedQuiz.questions.sort(orderQuestions));
-  }, [fetchedQuiz]);
+  if (!fetchedQuiz) {
+    return c('h1', { className: 'center' }, 'Loading Quiz...');
+  }
+
+  return c(React.Fragment, null,
+    c('h1', null, 'Edit Quiz'),
+    c(EditDetails, { fetchedQuiz }),
+    c(EditQuestions, { fetchedQuiz }),
+  );
+}
+
+function EditDetails({ fetchedQuiz }) {
+  const [quiz, setQuiz] = useState(fetchedQuiz);
 
   const onChange = useCallback(({ target: { id, value } }) => {
     const newQuiz = { ...quiz, [id]: value };
     updateQuiz(newQuiz);
     setQuiz(newQuiz);
   }, [quiz]);
+
+  return c('section', null,
+    c('div', { className: 'ColumnForm' },
+      c('label', { for: 'name' }, 'Name:'),
+      c('input', { id: 'name', value: quiz.name, onChange }),
+      c('label', { for: 'description' }, 'Description:'),
+      c('input', { id: 'description', value: quiz.description, onChange }),
+    ),
+  );
+}
+
+function EditQuestions({ fetchedQuiz }) {
+  const [questions, setQuestions] = useState(fetchedQuiz.questions.sort(orderQuestions));
 
   const onQuestionChange = useCallback(({ target: { id, value } }) => {
     const [questionId, key] = id.split('.');
@@ -36,22 +55,9 @@ function Edit() {
     setQuestions(newQuestions);
   }, [questions]);
 
-  if (!quiz) {
-    return c('h1', { className: 'center' }, 'Loading Quiz...');
-  }
-
-  return c(React.Fragment, null,
-    c('h1', null, 'Edit Quiz'),
-    c('section', null,
-      c('div', { className: 'ColumnForm' },
-        c('label', { for: 'name' }, 'Name:'),
-        c('input', { id: 'name', value: quiz.name, onChange }),
-        c('label', { for: 'description' }, 'Description:'),
-        c('input', { id: 'description', value: quiz.description, onChange }),
-      ),
-    ),
-    c('section', null,
-      questions?.map(question => c(Question, { onChange: onQuestionChange, question })),
+  return c('section', null,
+    questions?.map(question =>
+      c(Question, { onChange: onQuestionChange, question }),
     ),
   );
 }
