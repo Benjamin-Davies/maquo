@@ -2,6 +2,12 @@ import { throttleUpdates } from '../../src/throttler.js';
 
 const apiRoot = '../api';
 
+export async function createQuestion(quizId) {
+  const res = await fetch(`${apiRoot}/create-question?quiz_id=${quizId}`);
+  if (!res.ok) throw 'Could not create question';
+  return await res.json();
+}
+
 export async function getQuiz(id) {
   const res = await fetch(`${apiRoot}/quiz?id=${id}`);
   if (!res.ok) throw 'Could not get quiz';

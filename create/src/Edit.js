@@ -1,7 +1,7 @@
 import { useAsync, useLocationHash } from '../../src/react-utils.js';
-import { getQuiz, updateQuiz, updateQuestion, deleteQuestion } from './api.js';
+import { createQuestion, getQuiz, updateQuiz, updateQuestion, deleteQuestion } from './api.js';
 
-const { createElement: c, useCallback, useEffect, useState } = React;
+const { createElement: c, useCallback, useState } = React;
 
 const orderQuestions = (a, b) => a.number - b.number;
 
@@ -42,6 +42,15 @@ function EditDetails({ fetchedQuiz }) {
 function EditQuestions({ fetchedQuiz }) {
   const [questions, setQuestions] = useState(fetchedQuiz.questions.sort(orderQuestions));
 
+  const onNew = useCallback(async () => {
+    const newQuestion = await createQuestion(fetchedQuiz.id);
+
+    const newQuestions = Array.from(questions);
+    newQuestions.push(newQuestion);
+    newQuestions.sort(orderQuestions);
+    setQuestions([...questions, newQuestion]);
+  }, [questions]);
+
   const onChange = useCallback(({ target: { id, value } }) => {
     const [questionId, key] = id.split('.');
     const i = questions.findIndex(q => q.id === questionId);
@@ -67,6 +76,10 @@ function EditQuestions({ fetchedQuiz }) {
   }, [questions]);
 
   return c('section', null,
+    c('h3', null, 'Questions'),
+    c('p', null,
+      c('button', { onClick: onNew }, 'New Question'),
+    ),
     questions?.map(question =>
       c(Question, { onChange, onDelete, question }),
     ),

@@ -1,6 +1,25 @@
 <?php
 require_once __DIR__.'/connect.php';
 
+function create_question($quiz_id) {
+    global $db;
+
+    $number = get_next_question_number($quiz_id);
+
+    $sql = 'INSERT INTO `questions` (`quiz_id`, `question`, `answer`, `number`)
+            VALUES (:quiz_id, "", "", :number)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':quiz_id', $quiz_id);
+    $stmt->bindValue(':number', $number);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to create question');
+    }
+    $id = $db->lastInsertId();
+
+    return get_question($id);
+}
+
 function get_question($id) {
     global $db;
 
@@ -13,6 +32,20 @@ function get_question($id) {
         throw new Exception('Failed to get questions');
     }
     return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function get_next_question_number($quiz_id) {
+    global $db;
+
+    $sql = 'SELECT MAX(`number`) as `max_n` FROM questions
+            WHERE quiz_id = :quiz_id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':quiz_id', $quiz_id);
+    $success = $stmt->execute();
+    if (!$success) {
+        throw new Exception('Failed to get question');
+    }
+    return $stmt->fetch(PDO::FETCH_ASSOC)['max_n'] + 1;
 }
 
 function get_questions_by_quiz_id($quiz_id) {
