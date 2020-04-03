@@ -253,6 +253,10 @@ h1 .small {
   margin: 0 1em 0.2em;
 }
 
+.ColumnForm.Card > label {
+  color: var(--dark-text);
+}
+
 .ColumnForm > .error {
   color: red;
   font-weight: bold;

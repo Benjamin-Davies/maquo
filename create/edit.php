@@ -16,9 +16,12 @@ $links = [
         'href' => '../lib/react-dom.production.min.js',
     ],
     [
-        'rel' => 'preload',
-        'as' => 'modulescript',
+        'rel' => 'modulepreload',
         'href' => 'src/Edit.js',
+    ],
+    [
+        'rel' => 'modulepreload',
+        'href' => '../src/react-utils.js',
     ],
 ];
 require('../util/components/begin.php');
