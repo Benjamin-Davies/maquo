@@ -39,6 +39,7 @@ function EditDetails({ fetchedQuiz }) {
   return c('section', null,
     c('div', { className: 'ColumnForm' },
       c('p', null,
+        c('a', { className: 'button', href: '.' }, 'Back'),
         c('button', { onClick: onDelete }, 'Delete Quiz'),
       ),
       c('label', { for: 'name' }, 'Name:'),

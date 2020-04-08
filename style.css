@@ -62,6 +62,13 @@ button,
   text-align: center;
 }
 
+.Card button,
+.Card .button,
+p > button,
+p > .button {
+  margin-right: 0.5em;
+}
+
 .button--secondary {
   background-color: var(--primary);
   color: var(--lightest-text);
@@ -94,11 +101,6 @@ h1 .small {
 
 .Card__action {
   margin-top: 2em;
-}
-
-.Card button,
-.Card .button {
-  margin-right: 0.5em;
 }
 
 /* App Component */
