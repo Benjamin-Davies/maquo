@@ -31,6 +31,21 @@ if (isset($links)) {
 ?>
 </head>
 <body>
+    <noscript>
+        <header class="MainColumn">
+            <h3>Hello user</h3>
+            <p>
+                We agree that the web was much simpler in the old days, and that some people might have prefered that.
+                However, <b>Maquo requires Javascript</b> in order to function properly, so we ask that you enable Javascript on this site.
+            </p>
+            <p>
+                Thank you.
+            </p>
+        </header>
+    </noscript>
+    <script nomodule>
+        alert('Your browser does not appear to support any of the new features that Maquo makes use of.\nPlease consider using a recent version of Google Chrome or Firefox.');
+    </script>
     <nav class="Nav Nav--large">
         <ul class="Nav__inner">
             <li>
