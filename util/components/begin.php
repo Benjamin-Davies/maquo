@@ -53,6 +53,9 @@ if (isset($links)) {
             </li>
             <li class="Nav__spacer"></li>
             <li>
+                <a class="Nav__link" href="<?=$root_url?>/">Home</a>
+            </li>
+            <li>
                 <a class="Nav__link" href="<?=$root_url?>/create">Create Quiz</a>
             </li>
             <li>
