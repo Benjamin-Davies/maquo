@@ -269,7 +269,7 @@ h1 .small {
 /* Mobile */
 @import "https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css";
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   /* Nav (icons) */
   .Nav__link {
     font-size: 0;
@@ -292,7 +292,9 @@ h1 .small {
   .Nav__link--logout::before {
     content: '\e005';
   }
+}
 
+@media (max-width: 600px) {
   /* Buttons */
   button,
   .button {
