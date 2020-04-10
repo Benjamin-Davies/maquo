@@ -15,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $id = $_POST['id'];
   $name = $_POST['name'];
   $description = $_POST['description'];
+  $published = $_POST['published'];
 
   $quiz = get_quiz($id);
   if ($quiz['author_id'] !== $user_id) {
     throw new Exception('You do not own that quiz');
   }
 
-  update_quiz_details($id, $name, $description);
+  update_quiz_details($id, $name, $description, $published);
 }

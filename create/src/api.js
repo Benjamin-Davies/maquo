@@ -14,11 +14,12 @@ export async function getQuiz(id) {
   return await res.json();
 }
 
-async function updateQuizSimple({ id, name, description }) {
+async function updateQuizSimple({ id, name, description, published }) {
   const body = new FormData();
   body.append('id', id);
   body.append('name', name);
   body.append('description', description);
+  body.append('published', published);
 
   const res = await fetch(`${apiRoot}/quiz`, {
     method: 'POST',

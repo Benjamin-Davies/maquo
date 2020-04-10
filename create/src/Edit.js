@@ -29,6 +29,12 @@ function EditDetails({ fetchedQuiz }) {
     setQuiz(newQuiz);
   }, [quiz]);
 
+  const onTogglePublished = useCallback(() => {
+    const newQuiz = { ...quiz, published: 1 - quiz.published };
+    updateQuiz(newQuiz);
+    setQuiz(newQuiz);
+  });
+
   const onDelete = useCallback(async () => {
     if (confirm('Are you sure that you want to delete this quiz?')) {
       await deleteQuiz(quiz.id);
@@ -40,6 +46,9 @@ function EditDetails({ fetchedQuiz }) {
     c('div', { className: 'ColumnForm' },
       c('p', null,
         c('a', { className: 'button', href: '.' }, 'Back'),
+        c('button', { onClick: onTogglePublished },
+          parseInt(quiz.published) ? 'Unpublish' : 'Publish'
+        ),
         c('button', { onClick: onDelete }, 'Delete Quiz'),
       ),
       c('label', { for: 'name' }, 'Name:'),

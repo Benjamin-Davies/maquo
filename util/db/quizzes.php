@@ -31,7 +31,7 @@ function get_quiz($id) {
 function get_quizzes() {
     global $db;
 
-    $sql = 'SELECT * FROM quizzes ORDER BY id DESC';
+    $sql = 'SELECT * FROM quizzes WHERE published = 1 ORDER BY id DESC';
     $stmt = $db->prepare($sql);
     $success = $stmt->execute();
     if (!$success) {
@@ -55,16 +55,17 @@ function get_quizzes_by_user($author_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function update_quiz_details($id, $name, $description) {
+function update_quiz_details($id, $name, $description, $published) {
     global $db;
 
     $sql = 'UPDATE `quizzes`
-            SET name = :name, description = :description
+            SET name = :name, description = :description, published = :published
             WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->bindValue(':name', $name);
     $stmt->bindValue(':description', $description);
+    $stmt->bindValue(':published', $published);
     $success = $stmt->execute();
     if (!$success) {
         throw new Exception('Failed to update quiz');
