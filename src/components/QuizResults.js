@@ -1,6 +1,10 @@
+import { useFocusRef } from '../react-utils.js';
+
 const { createElement: c } = React;
 
 function QuizResults({ quizData, answers }) {
+  const focusRef = useFocusRef();
+
   return c('div', { className: 'QuizCodePrompt' },
     c('h1', { className: 'QuizCodePrompt__title' },
       'Results',
@@ -12,7 +16,7 @@ function QuizResults({ quizData, answers }) {
         ),
       ),
     ),
-    c('a', { href: '.', className: 'button' },
+    c('a', { href: '.', className: 'button', ref: focusRef },
       'Go Back Home',
     ),
   );

@@ -1,4 +1,12 @@
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
+
+export function useFocusRef(deps = []) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current.focus();
+  }, [...deps, ref.current]);
+  return ref;
+}
 
 export function useLocationHash() {
   const [hash, setHash] = useState(location.hash);

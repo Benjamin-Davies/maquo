@@ -1,3 +1,5 @@
+import { useFocusRef } from '../react-utils.js';
+
 const { createElement: c, useCallback, useState } = React;
 
 function QuizInterface({ quizData, nextStage }) {
@@ -8,6 +10,8 @@ function QuizInterface({ quizData, nextStage }) {
   const answerChanged = useCallback(ev => {
     setAnswer(ev.target.value);
   });
+
+  const focusRef = useFocusRef([ questionNumber ]);
 
   const [answers, setAnswers] = useState([]);
 
@@ -45,6 +49,7 @@ function QuizInterface({ quizData, nextStage }) {
       onChange: answerChanged,
       autoFocus: true,
       required: true,
+      ref: focusRef,
     }),
     c('button', { type: 'submit', },
       'Next',
