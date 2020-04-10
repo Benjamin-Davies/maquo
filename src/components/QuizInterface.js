@@ -4,7 +4,11 @@ const { createElement: c, useCallback, useState } = React;
 
 function QuizInterface({ quizData, nextStage }) {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const question = quizData.questions[questionNumber];
+  const question = quizData.questions[questionNumber] ?? {};
+  if (!question.question) {
+    console.log('Shouldn\'t be here!', quizData, questionNumber);
+    nextStage();
+  }
 
   const [answer, setAnswer] = useState('');
   const answerChanged = useCallback(ev => {

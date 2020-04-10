@@ -43,7 +43,7 @@ const zip = (a, b) => a.map((x, i) => [x, b[i]]);
 
 const lowercase = s => s.toLowerCase();
 const trimWhitespaceRegex = /^\s*(.+?)\s*$/;
-const trimWhitespace = s => trimWhitespaceRegex.exec(s)[1];
+const trimWhitespace = s => (trimWhitespaceRegex.exec(s) ?? [null, ''])[1];
 const whitespaceRegex = /\s/g;
 const contractWhitespace = s => s.replace(whitespaceRegex, ' ');
 
