@@ -138,7 +138,7 @@ h1 .small {
 /* Nav Component */
 .Nav {
   background: var(--primary);
-  font-size: 20pt;
+  font-size: 1.8rem;
 }
 
 .Nav__inner {
@@ -147,14 +147,15 @@ h1 .small {
   list-style: none;
   margin: 0 auto;
   max-width: 720px;
-  padding: 0.2em 0;
+  padding: 0;
   width: 80%;
 }
 
 .Nav__logo,
 .Nav__link {
   color: var(--light-text);
-  margin: 0 0.7rem;
+  display: block;
+  padding: 0.2rem 0.7rem;
   text-decoration-color: transparent;
   transition: text-decoration-color 100ms;
 }
@@ -272,11 +273,11 @@ h1 .small {
   /* Nav (icons) */
   .Nav__link {
     font-size: 0;
-    margin: 0 0.5rem;
+    padding: 0.2rem 0.5rem;
   }
   .Nav__link::before {
     font-family: 'typicons';
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     color: var(--lightest-text);
   }
   .Nav__link--home::before {
