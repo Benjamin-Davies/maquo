@@ -138,11 +138,7 @@ h1 .small {
 /* Nav Component */
 .Nav {
   background: var(--primary);
-  font-size: 1.5em;
-}
-
-.Nav.Nav--smaller {
-  font-size: 0.7em;
+  font-size: 20pt;
 }
 
 .Nav__inner {
@@ -198,14 +194,14 @@ h1 .small {
 
 .QuizCodePrompt > input,
 .QuizCodePrompt > button {
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 
 .QuizCodePrompt__results {
   display: flex;
-  overflow: hidden;
+  flex-grow: 5;
   height: 30vh;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
   padding: 0;
 }
 
@@ -307,9 +303,5 @@ h1 .small {
   /* App */
   .App {
     font-size: 18pt;
-  }
-
-  .QuizCodePrompt {
-    overflow: hidden;
   }
 }

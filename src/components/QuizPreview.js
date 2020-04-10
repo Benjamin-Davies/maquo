@@ -11,7 +11,7 @@ function QuizPreview({ quizData, nextStage }) {
     c('h1', { className: 'QuizCodePrompt__title' },
       quizData?.name ?? 'Loading...',
     ),
-    c('h3', { className: 'QuizCodePrompt__title' },
+    c('h3', null,
       quizData?.author ? `By ${quizData?.author}` : null,
     ),
     c('p', null,

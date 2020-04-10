@@ -1,18 +1,21 @@
 import { useFocusRef } from '../react-utils.js';
 
-const { createElement: c } = React;
+const { createElement: c, useMemo } = React;
 
 function QuizResults({ quizData, answers }) {
+  const results = useMemo(() => processResults(quizData, answers));
+
   const focusRef = useFocusRef();
 
   return c('div', { className: 'QuizCodePrompt' },
     c('h1', { className: 'QuizCodePrompt__title' },
       'Results',
     ),
+    c('div', null, results.score),
     c('div', { className: 'QuizCodePrompt__results Card' },
       c('div', null,
-        quizData.questions.map((question, i) =>
-          c(QuizResult, { key: i, i, question, answers }),
+        results.questions.map((question, i) =>
+          c(QuizResult, { key: i, question }),
         ),
       ),
     ),
@@ -22,15 +25,13 @@ function QuizResults({ quizData, answers }) {
   );
 }
 
-function QuizResult({ i, question, answers }) {
-  const answer = answers[i];
-
+function QuizResult({ question }) {
   return c('div', { className: 'QuizResult' },
     c('h3', null, question.question),
     c('p', null,
       'You put: ',
-      c('span', null, answer),
-      answersEq(answer, question.answer)
+      c('span', null, question.givenAnswer),
+      question.correct
       ? c('span', { className: 'QuizResult__answer--correct' })
       : c('span', { className: 'QuizResult__answer--wrong' }, question.answer),
     ),
@@ -38,6 +39,7 @@ function QuizResult({ i, question, answers }) {
 }
 
 const compose = (...fs) => x => fs.reduceRight((y, f) => f(y), x);
+const zip = (a, b) => a.map((x, i) => [x, b[i]]);
 
 const lowercase = s => s.toLowerCase();
 const trimWhitespaceRegex = /^\s*(.+?)\s*$/;
@@ -47,5 +49,23 @@ const contractWhitespace = s => s.replace(whitespaceRegex, ' ');
 
 const sanitizeAnswer = compose(contractWhitespace, trimWhitespace, lowercase);
 const answersEq = (a, b) => sanitizeAnswer(a) === sanitizeAnswer(b);
+
+const processResults = (quizData, givenAnswers) => {
+  const questions = zip(quizData.questions, givenAnswers)
+    .map(([{ question, answer }, givenAnswer]) => ({
+      question,
+      answer,
+      givenAnswer,
+      correct: answersEq(answer, givenAnswer),
+    }));
+
+  const total = questions.length;
+  const correctCount = questions.filter(q => q.correct).length;
+
+  return {
+    questions,
+    score: `${correctCount} / ${total}`,
+  };
+};
 
 export default QuizResults;
