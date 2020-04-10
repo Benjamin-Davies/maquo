@@ -64,7 +64,7 @@ if (isset($links)) {
             </li>
             <?php if (isset($user_id)) { ?>
                 <li>
-                    <a class="Nav__link" href="<?=$root_url?>/accounts/logout">Log Out</a>
+                    <a class="Nav__link Nav__link--logout" href="<?=$root_url?>/accounts/logout">Log Out</a>
                 </li>
             <?php } ?>
         </ul>

@@ -292,6 +292,9 @@ h1 .small {
   .Nav__link--account::before {
     content: '\e12b';
   }
+  .Nav__link--logout::before {
+    content: '\e005';
+  }
 
   /* Buttons */
   button,
