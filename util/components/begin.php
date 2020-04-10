@@ -6,6 +6,7 @@
     <title><?=$page_title?> - Maquo</title>
     <link rel="icon" href="<?=$root_url?>/assets/icon.png">
     <link rel="stylesheet" href="<?=$root_url?>/style.css">
+    <link async rel="stylesheet" href="https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css">
 <?php
 if (isset($google_platform)) {
     require __DIR__.'/../oauth.php';
@@ -53,13 +54,13 @@ if (isset($links)) {
             </li>
             <li class="Nav__spacer"></li>
             <li>
-                <a class="Nav__link" href="<?=$root_url?>/">Home</a>
+                <a class="Nav__link Nav__link--home" href="<?=$root_url?>/">Home</a>
             </li>
             <li>
-                <a class="Nav__link" href="<?=$root_url?>/create">Create Quiz</a>
+                <a class="Nav__link Nav__link--create" href="<?=$root_url?>/create">Create Quiz</a>
             </li>
             <li>
-                <a class="Nav__link" href="<?=$root_url?>/accounts/my-account">My Account</a>
+                <a class="Nav__link Nav__link--account" href="<?=$root_url?>/accounts/my-account">My Account</a>
             </li>
             <?php if (isset($user_id)) { ?>
                 <li>

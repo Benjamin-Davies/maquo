@@ -158,7 +158,7 @@ h1 .small {
 .Nav__logo,
 .Nav__link {
   color: var(--light-text);
-  margin: 0 0.5em;
+  margin: 0 0.7rem;
   text-decoration-color: transparent;
   transition: text-decoration-color 100ms;
 }
@@ -270,14 +270,27 @@ h1 .small {
 }
 
 /* Mobile */
-@media (max-width: 600px) {
-  /* Nav */
-  .Nav__inner {
-    flex-direction: column;
-  }
+@import "https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css";
 
-  .Nav__spacer {
-    height: 0.5em;
+@media (max-width: 600px) {
+  /* Nav (icons) */
+  .Nav__link {
+    font-size: 0;
+    margin: 0 0.5rem;
+  }
+  .Nav__link::before {
+    font-family: 'typicons';
+    font-size: 1.7rem;
+    color: var(--lightest-text);
+  }
+  .Nav__link--home::before {
+    content: '\e089';
+  }
+  .Nav__link--create::before {
+    content: '\e0c3';
+  }
+  .Nav__link--account::before {
+    content: '\e12b';
   }
 
   /* Buttons */
@@ -285,12 +298,7 @@ h1 .small {
   .button {
     display: block;
     font-size: 1.2em;
-    width: 100%;
-  }
-
-  .Card button,
-  .Card .button {
-    margin: 6pt 0 0 0;
+    margin: 6pt 0 0 0 !important;
   }
 
   /* App */
