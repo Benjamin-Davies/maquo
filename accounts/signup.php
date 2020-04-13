@@ -27,14 +27,14 @@ require('../util/components/begin.php');
 <main class="MainColumn">
     <form method="POST" class="ColumnForm">
         <h1>Sign Up</h1>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email">
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
+        <input type="text" name="username" id="username" autocomplete="username">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" autocomplete="new-password">
         <label for="confirm_password">Confirm Password:</label>
-        <input type="password" name="confirm_password" id="confirm_password">
+        <input type="password" name="confirm_password" id="confirm_password" autocomplete="new-password">
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">

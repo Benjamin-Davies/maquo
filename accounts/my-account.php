@@ -59,11 +59,12 @@ include '../util/components/begin.php';
     <section>
         <form class="ColumnForm" method="POST">
             <label for="old_password">Old Password:</label>
-            <input type="password" name="old_password" id="old_password">
+            <input type="password" name="old_password" id="old_password" autocomplete="current-password">
             <label for="new_password">New Password:</label>
-            <input type="password" name="new_password" id="new_password">
+            <input type="password" name="new_password" id="new_password" autocomplete="new-password">
             <label for="confirm_password">Confirm Password:</label>
-            <input type="password" name="confirm_password" id="confirm_password">
+            <input type="password" name="confirm_password" id="confirm_password" autocomplete="new-password">
+            <input type="hidden" autocomplete="username" value="<?= $user['username'] ?>">
             <input type="hidden" name="update" value="password">
             <button type="submit">Change Password</button>
         </form>

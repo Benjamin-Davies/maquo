@@ -25,7 +25,7 @@ require('../util/components/begin.php');
         <h1>Sign Up With Google</h1>
         <p>There's just one more step left in signing you up! We need to know what you want your username to be.</p>
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username" autofocus>
+        <input type="text" name="username" id="username" autofocus autocomplete="username">
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">

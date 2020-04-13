@@ -25,9 +25,9 @@ require('../util/components/begin.php');
     <form method="POST" class="ColumnForm">
         <h1>Log In</h1>
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
+        <input type="text" name="username" id="username" autocomplete="username">
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" autocomplete="current-password">
         <input type="hidden" name="redirect" value="<?=
             $_GET['redirect']
         ?>">
