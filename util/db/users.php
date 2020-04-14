@@ -4,6 +4,9 @@ require_once __DIR__.'/connect.php';
 function create_user($email, $username, $password_hash, $google_id) {
     global $db;
 
+    $email = prepare_email($email);
+    $username = prepare_username($username);
+
     $sql = 'INSERT INTO `users` (`id`, `email`, `username`, `password_hash`, `google_id`)
             VALUES (NULL, :email, :username, :password_hash, :google_id)';
     $stmt = $db->prepare($sql);
@@ -60,6 +63,9 @@ function get_user_by_google_id($google_id) {
 function update_user_details($id, $email, $username) {
     global $db;
 
+    $email = prepare_email($email);
+    $username = prepare_username($username);
+
     $sql = 'UPDATE `users`
             SET email = :email, username = :username
             WHERE id = :id';
@@ -75,6 +81,8 @@ function update_user_details($id, $email, $username) {
 
 function update_user_password_hash($id, $password_hash) {
     global $db;
+
+    validate_password($password);
 
     $sql = 'UPDATE `users`
             SET password_hash = :password_hash
@@ -98,4 +106,30 @@ function delete_user($id) {
     if (!$success) {
         throw new Exception('Failed to delete user');
     }
+}
+
+function prepare_email($email) {
+    $email = trim($email);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        throw new Exception('Invalid email');
+    }
+    if (strlen($email) > 320) {
+        throw new Exception('Email is too long');
+    }
+
+    return $email;
+}
+
+function prepare_username($username) {
+    $username = trim($username);
+
+    if (strlen($email) < 3) {
+        throw new Exception('Username is too short');
+    }
+    if (strlen($email) > 20) {
+        throw new Exception('Username is too long');
+    }
+
+    return $username;
 }

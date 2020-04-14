@@ -43,15 +43,15 @@ include '../util/components/begin.php';
             <label for="email">Email:</label>
             <input
                 type="email"
-                name="email"
-                id="email"
-                value="<?= $user['email'] ?>">
+                name="email" id="email"
+                value="<?= $user['email'] ?>"
+                maxlength="320">
             <label for="username">Username:</label>
             <input
                 type="text"
-                name="username"
-                id="username"
-                value="<?= $user['username'] ?>">
+                name="username" id="username"
+                value="<?= $user['username'] ?>"
+                minlength="3" maxlength="20">
             <input type="hidden" name="update" value="details">
             <button type="submit">Update Details</button>
         </form>

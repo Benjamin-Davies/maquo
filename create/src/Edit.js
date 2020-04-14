@@ -52,9 +52,9 @@ function EditDetails({ fetchedQuiz }) {
         c('button', { onClick: onDelete }, 'Delete Quiz'),
       ),
       c('label', { for: 'name' }, 'Name:'),
-      c('input', { id: 'name', value: quiz.name, onChange }),
+      c('input', { id: 'name', value: quiz.name, onChange, maxLength: 20 }),
       c('label', { for: 'description' }, 'Description:'),
-      c('input', { id: 'description', value: quiz.description, onChange }),
+      c('input', { id: 'description', value: quiz.description, onChange, maxLength: 100 }),
     ),
   );
 }
@@ -83,7 +83,7 @@ function EditQuestions({ fetchedQuiz }) {
     setQuestions(newQuestions);
   }, [questions]);
 
-  const onMove = useCallback(({ target: { id, value } }) => {
+  const onMove = useCallback(({ target: { id } }) => {
     const [questionId, direction] = id.split('.');
     const directionSign = direction === 'up' ? -1 : 1;
 
@@ -132,9 +132,9 @@ function Question({ onChange, onDelete, onMove, question: { id, question, answer
   return c('div', { className: 'Card', key: id },
     c('div', { className: 'ColumnForm' },
       c('label', { for: `${id}.question` }, 'Question'),
-      c('input', { id: `${id}.question`, value: question, onChange }),
+      c('input', { id: `${id}.question`, value: question, onChange, maxLength: 20 }),
       c('label', { for: `${id}.answer` }, 'Answer'),
-      c('input', { id: `${id}.answer`, value: answer, onChange }),
+      c('input', { id: `${id}.answer`, value: answer, onChange, maxLength: 20 }),
     ),
     c('div', null,
       c('button', { id: `${id}.up`, disabled: index === 0, onClick: onMove }, 'Move Up'),

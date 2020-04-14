@@ -66,6 +66,9 @@ function get_questions_by_quiz_id($quiz_id) {
 function update_question($id, $question, $answer, $number) {
     global $db;
 
+    $question = prepare_question($question);
+    $answer = prepare_question($answer);
+
     $sql = 'UPDATE `questions`
             SET question = :question, answer = :answer, number = :number
             WHERE id = :id';
@@ -91,4 +94,14 @@ function delete_question($id) {
     if (!$success) {
         throw new Exception('Failed to delete question');
     }
+}
+
+function prepare_question($question) {
+    $question = trim($question);
+
+    if (strlen($question) > 20) {
+        throw new Exception('Value is too long');
+    }
+
+    return $question;
 }

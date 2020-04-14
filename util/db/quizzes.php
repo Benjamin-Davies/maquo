@@ -5,7 +5,7 @@ function create_quiz($author_id) {
     global $db;
 
     $sql = 'INSERT INTO `quizzes` (`id`, `name`, `description`, `author_id`)
-            VALUES (NULL, "Untitled Quiz", "", :author_id)';
+            VALUES (NULL, "", "", :author_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':author_id', $author_id);
     $success = $stmt->execute();
@@ -58,6 +58,9 @@ function get_quizzes_by_user($author_id) {
 function update_quiz_details($id, $name, $description, $published) {
     global $db;
 
+    $name = prepare_name($name);
+    $description = prepare_description($description);
+
     $sql = 'UPDATE `quizzes`
             SET name = :name, description = :description, published = :published
             WHERE id = :id';
@@ -83,4 +86,24 @@ function delete_quiz($id) {
     if (!$success) {
         throw new Exception('Failed to delete quiz');
     }
+}
+
+function prepare_name($name) {
+    $name = trim($name);
+
+    if (strlen($name) > 20) {
+        return new Error('Name is too long');
+    }
+
+    return $name;
+}
+
+function prepare_description($description) {
+    $description = trim($description);
+
+    if (strlen($description) > 100) {
+        return new Error('Description is too long');
+    }
+
+    return $description;
 }
