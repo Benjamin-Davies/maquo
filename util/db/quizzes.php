@@ -1,6 +1,13 @@
 <?php
 require_once __DIR__.'/connect.php';
 
+function fix_quiz_name($quiz) {
+    if (strlen($quiz['name']) <= 0) {
+        $quiz['name'] = 'Untitled Quiz';
+    }
+    return $quiz;
+}
+
 function create_quiz($author_id) {
     global $db;
 
@@ -25,7 +32,7 @@ function get_quiz($id) {
     if (!$success) {
         throw new Exception('Failed to get quiz details');
     }
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    return fix_quiz_name($stmt->fetch(PDO::FETCH_ASSOC));
 }
 
 function get_quizzes() {
@@ -37,7 +44,7 @@ function get_quizzes() {
     if (!$success) {
         throw new Exception('Failed to get quizzes');
     }
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return array_map('fix_quiz_name', $stmt->fetchAll(PDO::FETCH_ASSOC));
 }
 
 function get_quizzes_by_user($author_id) {
@@ -52,7 +59,7 @@ function get_quizzes_by_user($author_id) {
     if (!$success) {
         throw new Exception('Failed to get quizzes');
     }
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return array_map('fix_quiz_name', $stmt->fetchAll(PDO::FETCH_ASSOC));
 }
 
 function update_quiz_details($id, $name, $description, $published) {
