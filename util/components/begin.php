@@ -1,3 +1,6 @@
+<?php
+$is_mobile = strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +11,8 @@
     <link rel="icon" href="<?=$root_url?>/assets/icon.png">
     <link rel="stylesheet" href="<?=$root_url?>/style.css">
     <link async rel="stylesheet" href="https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css">
+    <link crossorigin rel="<?=$is_mobile ? 'preload' : 'prefetch'?>" href="https://unpkg.com/typicons.font@2.0.9/src/font/typicons.woff" as="font">
 <?php
-if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile')) {
-    // Preload web font for mobile
-?>
-    <link crossorigin rel="preload" href="https://unpkg.com/typicons.font@2.0.9/src/font/typicons.woff" as="font">
-<?php
-}
-
 if (isset($google_platform)) {
     require __DIR__.'/../oauth.php';
 ?>
