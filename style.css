@@ -266,6 +266,18 @@ h1 .small {
   font-weight: bold;
 }
 
+@media (min-width: 800px) {
+  .ColumnForm--row {
+    flex-direction: row;
+  }
+
+  .ColumnForm--row > input {
+    flex-grow: 1;
+    margin-bottom: 0;
+    margin-right: 1em;
+  }
+}
+
 /* Mobile */
 @import "https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css";
 
@@ -282,6 +294,9 @@ h1 .small {
   }
   .Nav__link--home::before {
     content: '\e089';
+  }
+  .Nav__link--search::before {
+    content: '\e14e';
   }
   .Nav__link--create::before {
     content: '\e0c3';
