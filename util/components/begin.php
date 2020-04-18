@@ -60,7 +60,7 @@ if (isset($links)) {
                 <a class="Nav__link Nav__link--search" href="<?=$root_url?>/search">Search</a>
             </li>
             <li>
-                <a class="Nav__link Nav__link--create" href="<?=$root_url?>/create">Create Quiz</a>
+                <a class="Nav__link Nav__link--create" href="<?=$root_url?>/create">Create</a>
             </li>
             <li>
                 <a class="Nav__link Nav__link--account" href="<?=$root_url?>/accounts/my-account">My Account</a>

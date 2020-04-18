@@ -2,7 +2,7 @@
 :root {
   --background: #cceeff;
   --secondary-background: #aaddff;
-  --primary: #0077dd;
+  --primary: #0055cc;
   --secondary: #ffff77;
   --shadow: #33333333;
   --dark-text: #333333;
@@ -281,7 +281,7 @@ h1 .small {
 /* Mobile */
 @import "https://unpkg.com/typicons.font@2.0.9/src/font/typicons.css";
 
-@media (max-width: 800px) {
+@media (max-width: 880px) {
   /* Nav (icons) */
   .Nav__link {
     font-size: 0;
