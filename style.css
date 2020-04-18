@@ -285,7 +285,7 @@ h1 .small {
   /* Nav (icons) */
   .Nav__link {
     font-size: 0;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.7rem;
   }
   .Nav__link::before {
     font-family: 'typicons';
@@ -310,6 +310,17 @@ h1 .small {
 }
 
 @media (max-width: 600px) {
+  /* Nav (logo) */
+  .Nav__logo {
+    font-size: 0;
+    padding: 0.2rem 0.7rem;
+  }
+  .Nav__logo::before {
+    font-size: 1.8rem;
+    color: var(--lightest-text);
+    content: 'M';
+  }
+
   /* Buttons */
   button,
   .button {

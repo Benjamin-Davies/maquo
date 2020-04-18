@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An amazing quiz site for children and adults alike.">
     <title><?=$page_title?> - Maquo</title>
     <link rel="icon" href="<?=$root_url?>/assets/icon.png">
     <link rel="stylesheet" href="<?=$root_url?>/style.css">
