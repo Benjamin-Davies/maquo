@@ -124,10 +124,10 @@ function prepare_email($email) {
 function prepare_username($username) {
     $username = trim($username);
 
-    if (strlen($email) < 3) {
+    if (strlen($username) < 3) {
         throw new Exception('Username is too short');
     }
-    if (strlen($email) > 20) {
+    if (strlen($username) > 20) {
         throw new Exception('Username is too long');
     }
 
