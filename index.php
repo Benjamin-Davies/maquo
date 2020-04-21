@@ -18,10 +18,12 @@ $page_title = 'Welcome';
 <?php foreach (get_quizzes() as $quiz) { ?>
     <section class="Card">
         <h1>
-            <?=$quiz['name']?>
-            <span class="small">By <?=get_user($quiz['author_id'])['username']?></span>
+            <?=htmlspecialchars($quiz['name'])?>
+            <span class="small">By <?=htmlspecialchars(
+              get_user($quiz['author_id'])['username']
+            )?></span>
         </h1>
-        <p><?=$quiz['description']?></p>
+        <p><?=htmlspecialchars($quiz['description'])?></p>
         <p class="Card__action"><a href="quiz#<?=$quiz['id']?>" class="button button--secondary">Take The Quiz</a></p>
     </section>
 <?php } ?>

@@ -26,8 +26,8 @@ if (empty($user_quizzes)) {
     foreach ($user_quizzes as $quiz) {
 ?>
     <section class="Card">
-        <h1><?=$quiz['name']?></h1>
-        <p><?=$quiz['description']?></p>
+        <h1><?=htmlspecialchars($quiz['name'])?></h1>
+        <p><?=htmlspecialchars($quiz['description'])?></p>
         <p class="Card__action">
             <a href="edit#<?=$quiz['id']?>"
                 class="button">Edit Quiz</a>
