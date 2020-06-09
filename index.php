@@ -9,6 +9,8 @@ $page_title = 'Welcome';
 
 <header class="Header MainColumn">
     <h1>Welcome to Maquo</h1>
+    <p class="blurb">&hellip;the site for Ma Quizzes</p>
+    <p class="blurb">To get started you will be asked to create an account. Then you can create your first quizz. Or you could try someone else's quiz.</p>
     <p>
         <a href="create/" class="button">Create Quiz</a>
     </p>

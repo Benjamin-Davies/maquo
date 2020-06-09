@@ -90,6 +90,10 @@ h1 .small {
   font-weight: normal;
 }
 
+.blurb {
+  font-size: 0.9em;
+}
+
 /* Card Component */
 .Card {
   background-color: var(--secondary-background);
