@@ -44,7 +44,10 @@ function QuizInterface({ quizData, nextStage }) {
     className: 'QuizCodePrompt',
     onSubmit,
   },
-    c('h1', { className: 'QuizCodePrompt__title' },
+    c('h1', { className: question.question.length > 20
+      ? 'QuizCodePrompt__title QuizCodePrompt__title--small'
+      : 'QuizCodePrompt__title'
+    },
       question.question,
     ),
     c('input', {

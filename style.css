@@ -197,6 +197,10 @@ h1 .small {
   margin: 0.5em 0;
 }
 
+.QuizCodePrompt__title--small {
+  font-size: 1.2em;
+}
+
 .QuizCodePrompt > input,
 .QuizCodePrompt > button {
   margin: 0.5em 0;
