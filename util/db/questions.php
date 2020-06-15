@@ -67,7 +67,7 @@ function update_question($id, $question, $answer, $number) {
     global $db;
 
     $question = prepare_question($question);
-    $answer = prepare_question($answer);
+    $answer = prepare_answer($answer);
 
     $sql = 'UPDATE `questions`
             SET question = :question, answer = :answer, number = :number
@@ -99,9 +99,19 @@ function delete_question($id) {
 function prepare_question($question) {
     $question = trim($question);
 
-    if (strlen($question) > 20) {
+    if (strlen($question) > 60) {
         throw new Exception('Value is too long');
     }
 
     return $question;
+}
+
+function prepare_answer($answer) {
+    $answer = trim($answer);
+
+    if (strlen($answer) > 20) {
+        throw new Exception('Value is too long');
+    }
+
+    return $answer;
 }
