@@ -132,7 +132,7 @@ function Question({ onChange, onDelete, onMove, question: { id, question, answer
   return c('div', { className: 'Card', key: id },
     c('div', { className: 'ColumnForm' },
       c('label', { for: `${id}.question` }, 'Question'),
-      c('input', { id: `${id}.question`, value: question, onChange, maxLength: 20 }),
+      c('input', { id: `${id}.question`, value: question, onChange, maxLength: 60 }),
       c('label', { for: `${id}.answer` }, 'Answer'),
       c('input', { id: `${id}.answer`, value: answer, onChange, maxLength: 20 }),
     ),

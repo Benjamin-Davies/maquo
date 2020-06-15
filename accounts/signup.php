@@ -32,7 +32,7 @@ require('../util/components/begin.php');
             type="text"
             name="username" id="username"
             autocomplete="username"
-            maxlength="20">
+            maxlength="320">
         <label for="email">Email:</label>
         <input
             type="text"
