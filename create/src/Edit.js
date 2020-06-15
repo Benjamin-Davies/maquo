@@ -128,10 +128,10 @@ function EditQuestions({ fetchedQuiz }) {
   );
 }
 
-function Question({ onChange, onDelete, onMove, question: { id, question, answer }, index, length }) {
+function Question({ onChange, onDelete, onMove, question: { id, question, answer, number }, index, length }) {
   return c('div', { className: 'Card', key: id },
     c('div', { className: 'ColumnForm' },
-      c('label', { for: `${id}.question` }, 'Question'),
+      c('label', { for: `${id}.question` }, `Question ${number}`),
       c('input', { id: `${id}.question`, value: question, onChange, maxLength: 60 }),
       c('label', { for: `${id}.answer` }, 'Answer'),
       c('input', { id: `${id}.answer`, value: answer, onChange, maxLength: 20 }),
