@@ -64,6 +64,19 @@ export async function deleteQuestion(id) {
   if (!res.ok) throw 'Could not delete question';
 }
 
+export async function fixQuestionNumbering(questions) {
+  const promises = [];
+  for (const [i, q] of questions.entries()) {
+    const newNumber = i + 1;
+    if (q.number !== newNumber) {
+      q.number = newNumber;
+      const p = updateQuestion(q);
+      promises.push(p);
+    }
+  }
+  await Promise.all(promises);
+}
+
 // Throttle the function to:
 // a. Prevent the server from being spammed if
 //    our connection is slow

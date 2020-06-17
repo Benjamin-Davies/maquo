@@ -1,5 +1,5 @@
 import { useAsync, useLocationHash } from '../../src/react-utils.js';
-import { createQuestion, getQuiz, updateQuiz, updateQuestion, deleteQuiz, deleteQuestion } from './api.js';
+import { createQuestion, getQuiz, updateQuiz, updateQuestion, deleteQuiz, deleteQuestion, fixQuestionNumbering } from './api.js';
 
 const { createElement: c, useCallback, useState } = React;
 
@@ -114,6 +114,7 @@ function EditQuestions({ fetchedQuiz }) {
 
     const newQuestions = Array.from(questions);
     newQuestions.splice(i, 1);
+    fixQuestionNumbering(newQuestions);
     setQuestions(newQuestions);
   }, [questions]);
 
