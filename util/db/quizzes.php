@@ -11,7 +11,7 @@ function fix_quiz_name($quiz) {
 function create_quiz($author_id) {
     global $db;
 
-    $sql = 'INSERT INTO `quizzes` (`id`, `name`, `description`, `author_id`)
+    $sql = 'INSERT INTO quizzes (id, name, description, author_id)
             VALUES (NULL, "", "", :author_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':author_id', $author_id);
@@ -68,7 +68,7 @@ function update_quiz_details($id, $name, $description, $published) {
     $name = prepare_name($name);
     $description = prepare_description($description);
 
-    $sql = 'UPDATE `quizzes`
+    $sql = 'UPDATE quizzes
             SET name = :name, description = :description, published = :published
             WHERE id = :id';
     $stmt = $db->prepare($sql);
@@ -85,7 +85,7 @@ function update_quiz_details($id, $name, $description, $published) {
 function delete_quiz($id) {
     global $db;
 
-    $sql = 'DELETE FROM `quizzes`
+    $sql = 'DELETE FROM quizzes
             WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id);

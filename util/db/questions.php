@@ -6,7 +6,7 @@ function create_question($quiz_id) {
 
     $number = get_next_question_number($quiz_id);
 
-    $sql = 'INSERT INTO `questions` (`quiz_id`, `question`, `answer`, `number`)
+    $sql = 'INSERT INTO questions (quiz_id, question, answer, number)
             VALUES (:quiz_id, "", "", :number)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':quiz_id', $quiz_id);
@@ -37,7 +37,7 @@ function get_question($id) {
 function get_next_question_number($quiz_id) {
     global $db;
 
-    $sql = 'SELECT MAX(`number`) as `max_n` FROM questions
+    $sql = 'SELECT MAX(number) as max_n FROM questions
             WHERE quiz_id = :quiz_id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':quiz_id', $quiz_id);
@@ -69,7 +69,7 @@ function update_question($id, $question, $answer, $number) {
     $question = prepare_question($question);
     $answer = prepare_answer($answer);
 
-    $sql = 'UPDATE `questions`
+    $sql = 'UPDATE questions
             SET question = :question, answer = :answer, number = :number
             WHERE id = :id';
     $stmt = $db->prepare($sql);
@@ -86,7 +86,7 @@ function update_question($id, $question, $answer, $number) {
 function delete_question($id) {
     global $db;
 
-    $sql = 'DELETE FROM `questions`
+    $sql = 'DELETE FROM questions
             WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id);

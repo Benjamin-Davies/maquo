@@ -7,7 +7,7 @@ function create_user($email, $username, $password_hash, $google_id) {
     $email = prepare_email($email);
     $username = prepare_username($username);
 
-    $sql = 'INSERT INTO `users` (`id`, `email`, `username`, `password_hash`, `google_id`)
+    $sql = 'INSERT INTO users (id, email, username, password_hash, google_id)
             VALUES (NULL, :email, :username, :password_hash, :google_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':email', $email);
@@ -66,7 +66,7 @@ function update_user_details($id, $email, $username) {
     $email = prepare_email($email);
     $username = prepare_username($username);
 
-    $sql = 'UPDATE `users`
+    $sql = 'UPDATE users
             SET email = :email, username = :username
             WHERE id = :id';
     $stmt = $db->prepare($sql);
@@ -84,7 +84,7 @@ function update_user_password_hash($id, $password_hash) {
 
     validate_password($password);
 
-    $sql = 'UPDATE `users`
+    $sql = 'UPDATE users
             SET password_hash = :password_hash
             WHERE id = :id';
     $stmt = $db->prepare($sql);
@@ -99,7 +99,7 @@ function update_user_password_hash($id, $password_hash) {
 function delete_user($id) {
     global $db;
 
-    $sql = 'DELETE FROM `users` WHERE id = :id';
+    $sql = 'DELETE FROM users WHERE id = :id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id);
     $success = $stmt->execute();
