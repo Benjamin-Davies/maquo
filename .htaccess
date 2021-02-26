@@ -20,3 +20,6 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 
 #If neither above conditions are met, redirect to https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Custom error page
+ErrorDocument 404 /404
