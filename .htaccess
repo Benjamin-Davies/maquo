@@ -3,8 +3,20 @@ Options +FollowSymLinks -MultiViews
 RewriteEngine On
 RewriteBase /
 
+# Allow omission of PHP and HTML extensions
 RewriteCond %{REQUEST_FILENAME}.php -f [NC]
 RewriteRule ^ %{REQUEST_URI}.php [L]
 
 RewriteCond %{REQUEST_FILENAME}.html -f [NC]
 RewriteRule ^ %{REQUEST_URI}.html [L]
+
+##Force SSL 
+
+#Normal way (in case you need to deploy to NON-heroku)
+RewriteCond %{HTTPS} !=on
+
+#Heroku way
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+
+#If neither above conditions are met, redirect to https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
