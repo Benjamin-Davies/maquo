@@ -2,7 +2,7 @@
 require 'util/db/quizzes.php';
 require 'util/db/users.php';
 
-$root_url = '/';
+$root_url = '/.';
 $page_title = '404';
 ?>
 <?php include 'util/components/begin.php'; ?>
