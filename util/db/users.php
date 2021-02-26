@@ -7,8 +7,8 @@ function create_user($email, $username, $password_hash, $google_id) {
     $email = prepare_email($email);
     $username = prepare_username($username);
 
-    $sql = 'INSERT INTO users (id, email, username, password_hash, google_id)
-            VALUES (NULL, :email, :username, :password_hash, :google_id)';
+    $sql = 'INSERT INTO users (email, username, password_hash, google_id)
+            VALUES (:email, :username, :password_hash, :google_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':email', $email);
     $stmt->bindValue(':username', $username);

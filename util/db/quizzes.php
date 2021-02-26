@@ -11,8 +11,8 @@ function fix_quiz_name($quiz) {
 function create_quiz($author_id) {
     global $db;
 
-    $sql = 'INSERT INTO quizzes (id, name, description, author_id)
-            VALUES (NULL, "", "", :author_id)';
+    $sql = 'INSERT INTO quizzes (name, description, author_id)
+            VALUES ("", "", :author_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':author_id', $author_id);
     $success = $stmt->execute();
